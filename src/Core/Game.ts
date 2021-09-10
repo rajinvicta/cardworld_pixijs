@@ -1,14 +1,17 @@
-import EntityFactory from './Kernel/Entity/EntityFactory';
-
+import Kernel from './Kernel/Kernel';
+import Config from './Kernel/Config';
 
 class Game {
-  private _entityFactory: EntityFactory;
-  constructor(entityFactory: EntityFactory) {
-    this._entityFactory = entityFactory;
+  private _kernel: Kernel;
+  private _config: Config;
+
+  constructor(kernel: Kernel, config: Config) {
+    this._kernel = kernel;
+    this._config = config;
   }
 
   public startGame() {
-    console.log("Game Started!");
+    this._kernel.createRenderer(this._config.width, this._config.height, true, false);
   }
 }
 
