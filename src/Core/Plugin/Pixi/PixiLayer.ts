@@ -1,4 +1,6 @@
 import * as PIXI from "pixi.js"
+import Resource from "../../Data/Resource";
+import type { Dict } from '@pixi/utils';
 
 class PixiLayer {
   private _app: PIXI.Application | null;
@@ -37,6 +39,37 @@ class PixiLayer {
     document.body.appendChild(app.view);
 
     this._app = app;
+  }
+
+  public addImages(imgList: Resource[]) {
+    this._addResources(imgList);
+  }
+
+  public addAtlases(atlasList: Resource[]) {
+    this._addResources(atlasList);
+  }
+
+  public async downloadResources(onProgress: Function, onComplete: Function): Promise<Dict<PIXI.LoaderResource>> {
+    return new Promise((resolve: Function, reject: Function) => {
+      PIXI.Loader.shared.onProgress.once(() => {
+        onProgress(PIXI.Loader.shared.progress);
+      });
+
+      PIXI.Loader.shared.load((loader: PIXI.Loader, resources: Dict<PIXI.LoaderResource>) => {
+        resolve(resources);
+
+        onComplete();
+      });
+    });
+  }
+
+  private _addResources(resList: Resource[]) {
+    for (let c = 0; c < resList.length; c++) {
+      let name = resList[c].name;
+      let url = resList[c].url;
+
+      PIXI.Loader.shared.add(name, url);
+    }
   }
 }
 
