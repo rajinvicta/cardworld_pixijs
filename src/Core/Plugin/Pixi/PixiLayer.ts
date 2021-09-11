@@ -1,8 +1,10 @@
 import * as PIXI from "pixi.js"
 
 class PixiLayer {
-  constructor() {
+  private _app: PIXI.Application | null;
 
+  constructor() {
+    this._app = null;
   }
 
   public createApplication(width: number, height: number, antialias: boolean, transparent: boolean) {
@@ -17,6 +19,8 @@ class PixiLayer {
     });
 
     document.body.appendChild(app.view);
+
+    this._app = app;
   }
 }
 
