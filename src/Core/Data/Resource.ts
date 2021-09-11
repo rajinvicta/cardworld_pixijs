@@ -23,8 +23,12 @@ class Resource {
     this._url = val;
   }
 
-  public createNew(): Resource {
-    return new Resource();
+  public createNew(name: string, url: string): Resource {
+    let res = new Resource();
+    res.name = name;
+    res.url = url;
+
+    return res;
   }
 }
 
