@@ -3,7 +3,8 @@ class Resource {
   private _url: string;
 
   constructor() {
-
+    this._name = "";
+    this._url = "";
   }
 
   get name(): string {
