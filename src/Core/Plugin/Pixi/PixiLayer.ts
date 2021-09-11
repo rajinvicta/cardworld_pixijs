@@ -7,6 +7,22 @@ class PixiLayer {
     this._app = null;
   }
 
+  get renderer(): PIXI.Renderer | PIXI.AbstractRenderer | null {
+    if (this._app) {
+      return this._app.renderer;
+    } else {
+      return null;
+    }
+  }
+
+  get stage(): PIXI.Container | null {
+    if (this._app) {
+      return this._app.stage;
+    } else {
+      return null;
+    }
+  }
+
   public createApplication(width: number, height: number, antialias: boolean, transparent: boolean) {
     let alphaValue = 1;
     if (transparent) alphaValue = 0;
