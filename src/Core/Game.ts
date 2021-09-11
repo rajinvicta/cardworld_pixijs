@@ -1,17 +1,18 @@
-import Kernel from './Kernel/Kernel';
-import Config from './Kernel/Config';
+import Config from './Control/Config';
+
+import IScreen from './Plugin/IScreen';
 
 class Game {
-  private _kernel: Kernel;
+  private _screen: IScreen;
   private _config: Config;
 
-  constructor(kernel: Kernel, config: Config) {
-    this._kernel = kernel;
+  constructor(screen: IScreen, config: Config) {
+    this._screen = screen;
     this._config = config;
   }
 
   public startGame() {
-    this._kernel.createRenderer(this._config.width, this._config.height, true, false);
+    this._screen.startRenderer(this._config.width, this._config.height, true, false);
   }
 }
 
