@@ -1,3 +1,5 @@
+import IGameObject from "../../Plugin/IGameObject";
+
 import Position from './Component/Position';
 import Display from './Component/Display';
 
