@@ -1,7 +1,7 @@
 interface IScene {
-  preload();
-  create();
-  update();
+  preload(): void;
+  create(): void;
+  update(): void;
 }
 
 export default IScene;

@@ -7,7 +7,9 @@ class GameObject implements IGameObject {
   public angle: number;
 
   constructor() {
-
+    this.x = 0;
+    this.y = 0;
+    this.angle = 0;
   }
 }
 
