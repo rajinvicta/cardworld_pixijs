@@ -3,8 +3,8 @@ interface IScreen {
 
   createContainer(
     particleMode: boolean,
-    maxSize: number,
-    properties: any,
+    maxSize?: number,
+    properties?: any,
     batchSize?: number,
     autoResize?: boolean
   ): any;
