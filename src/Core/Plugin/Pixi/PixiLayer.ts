@@ -41,6 +41,19 @@ class PixiLayer {
     this._app = app;
   }
 
+  public createContainer(): PIXI.Container {
+    return new PIXI.Container();
+  }
+
+  public createParticleContainer(
+    maxSize: number = 1500,
+    properties: PIXI.IParticleProperties = {},
+    batchSize?: number,
+    autoResize?: boolean
+  ): PIXI.ParticleContainer {
+    return new PIXI.ParticleContainer(maxSize, properties, batchSize, autoResize);
+  }
+
   public addImages(imgList: Resource[]) {
     this._addResources(imgList);
   }
