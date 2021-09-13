@@ -25,6 +25,10 @@ class Screen implements IScreen {
       return this._pixiLayer.createContainer();
     }
   }
+
+  public createSprite(sheet: string, frame?: string) {
+    return this._pixiLayer.createSprite(sheet, frame);
+  }
 }
 
 export default Screen;
