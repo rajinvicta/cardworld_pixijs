@@ -1,4 +1,5 @@
 import SceneData from "../Data/SceneData";
+import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
 
 class SceneManager {
@@ -27,16 +28,21 @@ class SceneManager {
 
     if (scn) {
       console.log("Starting Scene", scn);
+      this._handleSceneStart(scn);
     } else {
       console.error("No scene with the name '%s' found", name);
     }
   }
 
-  private _addScene(name: string, scene: any) {
+  private _addScene(name: string, scene: IScene) {
     let sd = this._createSceneData(name, scene);
     sd.container = this._createContainer();
 
     this._sceneList.push(sd);
+  }
+
+  private _handleSceneStart(scene: SceneData) {
+    scene.scene.create();
   }
 
   private _exists(name: string): boolean {
@@ -49,7 +55,7 @@ class SceneManager {
     }
   }
 
-  private _getScene(name: string): {name: string, scene: any} | null {
+  private _getScene(name: string): SceneData | null {
     for (let c = 0; c < this._sceneList.length; c++) {
       if (this._sceneList[c].name == name) return this._sceneList[c];
     }
