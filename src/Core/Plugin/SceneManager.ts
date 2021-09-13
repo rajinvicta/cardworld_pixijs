@@ -2,6 +2,7 @@ import SceneData from "../Data/SceneData";
 import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
 import Loop from "../Control/Loop";
+import IGameObject from "./IGameObject";
 
 class SceneManager {
   private _pixiLayer: PixiLayer;
@@ -50,6 +51,18 @@ class SceneManager {
     }
   }
 
+  public addObject(obj: IGameObject) {
+    if (this._currentScene) {
+      this._pixiLayer.addObject(this._currentScene.container, obj);
+    }
+  }
+
+  public removeObject(obj: IGameObject) {
+    if (this._currentScene) {
+      this._pixiLayer.removeObject(this._currentScene.container, obj);
+    }
+  }
+
   private _update() {
     if (this._currentScene && this._canUpdate) {
       this._currentScene.scene.update();
@@ -71,7 +84,7 @@ class SceneManager {
 
     this._currentScene.scene.preload().then(() => {
       this._canUpdate = true;
-      
+
       scene.scene.create();
     });
   }

@@ -54,6 +54,14 @@ class PixiLayer {
     return new PIXI.ParticleContainer(maxSize, properties, batchSize, autoResize);
   }
 
+  public addObject(container: PIXI.Container, child: any) {
+    container.addChild(child);
+  }
+
+  public removeObject(container: PIXI.Container, child: any) {
+    container.removeChild(child);
+  }
+
   public addImages(imgList: Resource[]) {
     this._addResources(imgList);
   }
