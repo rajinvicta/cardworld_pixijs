@@ -54,6 +54,21 @@ class PixiLayer {
     return new PIXI.ParticleContainer(maxSize, properties, batchSize, autoResize);
   }
 
+  public createSprite(sheet: string, frame?: string): PIXI.Sprite | null {
+    if (frame) {
+      let spritesheet = PIXI.Loader.shared.resources[sheet].spritesheet;
+
+      if (spritesheet) {
+        return new PIXI.Sprite(spritesheet.textures[frame]);
+      } else {
+        console.error("NO spritesheet '%s' found!", sheet);
+        return null;
+      }
+    } else {
+      return PIXI.Sprite.from(sheet);
+    }
+  }
+
   public addObject(container: PIXI.Container, child: any) {
     container.addChild(child);
   }
