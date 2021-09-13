@@ -19,6 +19,8 @@ class Loop {
     this._oldDelay = 0;
 
     this._boundExecuteAll = this._executeAll.bind(this);
+
+    console.log("Loop allocated");
   }
 
   public addFunction(f: Function, context: any) {
@@ -27,7 +29,7 @@ class Loop {
     if (fObj == null) {
       let o = this._newFunObj(f, context);
       this._fList.push(o);
-      console.log(`%csuccessfully added listener with context %s to Loop`, 'color:green', context);
+      console.log(`%csuccessfully added listener with context %s to Loop`, 'color:blue', context);
     } else {
       console.error("trying to add function %s twice with identical context: ", f, context);
     }
@@ -51,19 +53,8 @@ class Loop {
 
   private _executeAll(time: number) {
 
-    if (this._paused == 1) {
-      this._delay = this._oldDelay + (time - this._lastTime);
-
-    } else if (this._paused == 2) {
-      this._paused = 1;
-      this._oldDelay = this._delay;
-      this._lastTime = time;
-    } else if (this._paused == 0) {
-
-      for (let c = 0; c < this._fList.length; c++) {
-        this._fList[c].execute(time - this._delay);
-      }
-
+    for (let c = 0; c < this._fList.length; c++) {
+      this._fList[c].execute(time - this._delay);
     }
 
     window.requestAnimationFrame(this._boundExecuteAll);

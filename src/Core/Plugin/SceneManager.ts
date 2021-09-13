@@ -1,18 +1,30 @@
 import SceneData from "../Data/SceneData";
 import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
+import Loop from "../Control/Loop";
 
 class SceneManager {
   private _pixiLayer: PixiLayer;
   private _sceneData: SceneData;
+  private _loop: Loop;
+  private _currentScene: SceneData | null;
 
   private _sceneList:SceneData[];
 
-  constructor(pixiLayer: PixiLayer, sceneData: SceneData) {
+  constructor(pixiLayer: PixiLayer, sceneData: SceneData, loop: Loop) {
     this._pixiLayer = pixiLayer;
     this._sceneData = sceneData;
+    this._loop = loop;
+
+    this._currentScene = null;
 
     this._sceneList = [];
+
+    console.log("SceneManager allocated!");
+  }
+
+  public init() {
+    this._loop.addFunction(this._update, this);
   }
 
   public addScene(name: string, scene: any) {
@@ -34,6 +46,12 @@ class SceneManager {
     }
   }
 
+  private _update() {
+    if (this._currentScene) {
+      this._currentScene.scene.update();
+    }
+  }
+
   private _addScene(name: string, scene: IScene) {
     let sd = this._createSceneData(name, scene);
     sd.container = this._createContainer();
@@ -42,6 +60,7 @@ class SceneManager {
   }
 
   private _handleSceneStart(scene: SceneData) {
+    this._currentScene = scene;
     scene.scene.create();
   }
 
