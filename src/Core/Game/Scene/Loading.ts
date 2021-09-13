@@ -6,7 +6,7 @@ class Loading implements IScene {
 
   }
 
-  public preload() {
+  public async preload() {
 
   }
 
@@ -16,6 +16,10 @@ class Loading implements IScene {
 
   public update() {
     console.log("updating Xd");
+  }
+
+  public shutdown() {
+
   }
 
 }
