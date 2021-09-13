@@ -43,7 +43,7 @@ module.exports = (env) => {
       new CalculateDepsPlugin(
         ["./src/Core"],
         "src/Dep/ControlContainer.ts",
-        ["PixiLayer", "Kernel"], []),
+        ["PixiLayer", "Loop"], []),
 
       new HtmlWebpackPlugin({
         title: "Card World - PixiJS"
