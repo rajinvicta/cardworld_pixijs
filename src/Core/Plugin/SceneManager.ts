@@ -9,6 +9,8 @@ class SceneManager {
   private _loop: Loop;
   private _currentScene: SceneData | null;
 
+  private _canUpdate: boolean;
+
   private _sceneList:SceneData[];
 
   constructor(pixiLayer: PixiLayer, sceneData: SceneData, loop: Loop) {
@@ -17,6 +19,8 @@ class SceneManager {
     this._loop = loop;
 
     this._currentScene = null;
+
+    this._canUpdate = false;
 
     this._sceneList = [];
 
@@ -47,7 +51,7 @@ class SceneManager {
   }
 
   private _update() {
-    if (this._currentScene) {
+    if (this._currentScene && this._canUpdate) {
       this._currentScene.scene.update();
     }
   }
@@ -60,8 +64,16 @@ class SceneManager {
   }
 
   private _handleSceneStart(scene: SceneData) {
+    if (this._currentScene != null) this._currentScene.scene.shutdown();
+
+    this._canUpdate = false;
     this._currentScene = scene;
-    scene.scene.create();
+
+    this._currentScene.scene.preload().then(() => {
+      this._canUpdate = true;
+      
+      scene.scene.create();
+    });
   }
 
   private _exists(name: string): boolean {
