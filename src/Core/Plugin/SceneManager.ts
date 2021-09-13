@@ -77,7 +77,14 @@ class SceneManager {
   }
 
   private _handleSceneStart(scene: SceneData) {
-    if (this._currentScene != null) this._currentScene.scene.shutdown();
+    if (this._currentScene != null) {
+      this._currentScene.scene.shutdown();
+    }
+
+    if (this._pixiLayer.stage) {
+      this._pixiLayer.stage.removeChildren();
+      this._pixiLayer.stage.addChild(scene.container);
+    }
 
     this._canUpdate = false;
     this._currentScene = scene;
