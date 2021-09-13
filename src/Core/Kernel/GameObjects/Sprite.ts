@@ -8,6 +8,10 @@ class Sprite extends CoreEntity {
   constructor(position: Position, display: Display, foreignObject: IGameObject) {
     super(position, display, foreignObject);
   }
+
+  public init(x: number, y: number, sheet: string, frame: string) {
+    
+  }
 }
 
 export default Sprite;
