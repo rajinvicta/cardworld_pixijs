@@ -28,7 +28,7 @@ class Screen implements IScreen {
   }
 
   public createSprite(sheet: string, frame?: string): IGameObject {
-    return <IGameObject>this._pixiLayer.createSprite(sheet, frame);
+    return <IGameObject><unknown>this._pixiLayer.createSprite(sheet, frame);
   }
 }
 
