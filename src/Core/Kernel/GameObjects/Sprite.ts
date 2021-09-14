@@ -23,6 +23,14 @@ class Sprite extends CoreEntity {
     this._sceneManager.addObject(fo);
     this._activate(x, y, fo);
   }
+
+  public createNew(): Sprite {
+    let pos = this._position.createNew();
+    let dis = this._display.createNew();
+    let fo = this._foreignObject.createNew();
+
+    return new Sprite(pos, dis, fo, this._screen, this._sceneManager);
+  }
 }
 
 export default Sprite;

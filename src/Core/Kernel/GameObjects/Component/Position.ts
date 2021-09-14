@@ -48,6 +48,10 @@ class Position {
 
     this._foreignObject = foreignObject;
   }
+
+  public createNew(): Position {
+    return new Position(this._foreignObject.createNew());
+  }
   
 }
 

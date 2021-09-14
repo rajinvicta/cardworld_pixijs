@@ -4,8 +4,8 @@ import Position from './Component/Position';
 import Display from './Component/Display';
 
 class CoreEntity {
-  private _position: Position;
-  private _display: Display;
+  protected _position: Position;
+  protected _display: Display;
   protected _foreignObject: IGameObject;
 
   constructor(position: Position, display: Display, foreignObject: IGameObject) {

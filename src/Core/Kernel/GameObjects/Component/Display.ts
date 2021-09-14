@@ -38,6 +38,10 @@ class Display {
 
     this._foreignObject = foreignObject;
   }
+
+  public createNew(): Display {
+    return new Display(this._foreignObject.createNew());
+  }
 }
 
 export default Display;

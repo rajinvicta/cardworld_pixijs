@@ -15,6 +15,10 @@ class GameObject implements IGameObject {
     this.visible = true;
     this.alpha = 1;
   }
+
+  public createNew(): IGameObject {
+    return new GameObject();
+  }
 }
 
 export default GameObject;
