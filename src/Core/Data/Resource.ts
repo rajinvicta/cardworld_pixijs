@@ -30,6 +30,17 @@ class Resource {
 
     return res;
   }
+
+  public createArray(arr: {name: string, url: string}[]): Resource[] {
+    let snd: Resource[] = [];
+
+    for (let c = 0; c < arr.length; c++) {
+      let res = this.createNew(arr[c].name, arr[c].url);
+      snd.push(res);
+    }
+
+    return snd;
+  }
 }
 
 export default Resource;
