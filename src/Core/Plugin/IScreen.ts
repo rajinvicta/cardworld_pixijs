@@ -1,3 +1,5 @@
+import IGameObject from "./IGameObject";
+
 interface IScreen {
   startRenderer(width: number, height: number, antialias: boolean, transparent: boolean): void;
 
@@ -8,6 +10,8 @@ interface IScreen {
     batchSize?: number,
     autoResize?: boolean
   ): any;
+
+  createSprite(sheet: string, frame?: string): IGameObject;
 }
 
 export default IScreen;

@@ -1,3 +1,4 @@
+import IGameObject from './IGameObject';
 import IScreen from './IScreen';
 import PixiLayer from './Pixi/PixiLayer';
 
@@ -26,8 +27,8 @@ class Screen implements IScreen {
     }
   }
 
-  public createSprite(sheet: string, frame?: string) {
-    return this._pixiLayer.createSprite(sheet, frame);
+  public createSprite(sheet: string, frame?: string): IGameObject {
+    return <IGameObject>this._pixiLayer.createSprite(sheet, frame);
   }
 }
 
