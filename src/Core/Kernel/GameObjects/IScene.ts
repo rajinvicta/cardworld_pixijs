@@ -1,5 +1,5 @@
 interface IScene {
-  preload(): Promise<void>;
+  preload(): Promise<any>;
   create(): void;
   update(): void;
   shutdown(): void;
