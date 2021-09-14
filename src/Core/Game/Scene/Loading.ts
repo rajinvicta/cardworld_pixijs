@@ -15,7 +15,7 @@ class Loading implements IScene {
   }
 
   public update() {
-    console.log("updating Xd");
+    //console.log("updating Xd");
   }
 
   public shutdown() {
