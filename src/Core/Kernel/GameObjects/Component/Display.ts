@@ -1,8 +1,15 @@
+import IGameObject from "../../../Plugin/IGameObject";
+import GameObject from "../../../Plugin/IGameObject";
+
 class Display {
   private _alpha: number;
   private _visible: boolean;
 
-  constructor() {
+  private _foreignObject: IGameObject;
+
+  constructor(foreignObject: IGameObject) {
+    this._foreignObject = foreignObject;
+
     this._alpha = 1;
     this._visible = true;
   }
@@ -17,15 +24,19 @@ class Display {
 
   set alpha(val: number) {
     this._alpha = val;
+    this._foreignObject.alpha = val;
   }
 
   set visible(val: boolean) {
     this._visible = val;
+    this._foreignObject.visible = val;
   }
 
-  public init() {
+  public init(foreignObject: IGameObject) {
     this._alpha = 1;
     this._visible = true;
+
+    this._foreignObject = foreignObject;
   }
 }
 

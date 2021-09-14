@@ -26,8 +26,9 @@ class CoreEntity {
     return this._foreignObject;
   }
 
-  protected _activateComponents() {
-    console.log("Activated Components");
+  protected _activate(x: number, y: number, foreignObject: IGameObject) {
+    this._position.init(x, y, foreignObject);
+    this._display.init(foreignObject);
   }
 }
 
