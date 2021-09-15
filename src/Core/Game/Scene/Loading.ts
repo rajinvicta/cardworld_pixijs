@@ -1,17 +1,39 @@
+import IGfxLoader from "../../Plugin/IGfxLoader";
+import Resource from "../../Data/Resource";
+import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
+
 import IScene from "../../Kernel/GameObjects/IScene";
 
 
 class Loading implements IScene {
-  constructor() {
+  private _gfxLoader: IGfxLoader;
+  private _resource: Resource;
+  private _entityFactory: EntityFactory;
 
+  constructor(gfxLoader: IGfxLoader, resource: Resource, entityFactory: EntityFactory) {
+    this._gfxLoader = gfxLoader;
+    this._resource = resource;
+    this._entityFactory = entityFactory;
   }
 
-  public async preload() {
+  public async preload(): Promise<void> {
+    return new Promise((resolve: Function, reject: Function) => {
+      let resourceList = this._resource.createArray([
+        {name: "spritesheet", url: "assets/spritesheet.json"}
+      ]);
 
+      this._gfxLoader.addResources(resourceList);
+      this._gfxLoader.download(() => {}, () => {
+        console.log("Download Complete"); 
+        resolve();
+      });
+      
+    });
   }
 
   public create() {
-    console.log("Hello World!");
+    let logo = this._entityFactory.sprite(20, 20, 'spritesheet', 'logo'); 
+    (<any>window).logo = logo;
   }
 
   public update() {
