@@ -1,12 +1,15 @@
 import * as PIXI from "pixi.js"
 import Resource from "../../Data/Resource";
 import type { Dict } from '@pixi/utils';
+import PxText from "./PxText";
 
 class PixiLayer {
   private _app: PIXI.Application | null;
+  private _pxText: PxText;
 
-  constructor() {
+  constructor(pxText: PxText) {
     this._app = null;
+    this._pxText = pxText;
   }
 
   get renderer(): PIXI.Renderer | PIXI.AbstractRenderer | null {
@@ -43,6 +46,13 @@ class PixiLayer {
 
   public createContainer(): PIXI.Container {
     return new PIXI.Container();
+  }
+
+  public createText(text: string, style: any): PxText {
+    let pt = this._pxText.createNew();
+    pt.init(text, (<PIXI.Renderer>(<PIXI.Application>this._app).renderer), style);
+
+    return pt;
   }
 
   public createParticleContainer(

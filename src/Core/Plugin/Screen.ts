@@ -30,6 +30,10 @@ class Screen implements IScreen {
   public createSprite(sheet: string, frame?: string): IGameObject {
     return <IGameObject><unknown>this._pixiLayer.createSprite(sheet, frame);
   }
+
+  public createText(text: string, style: any): IGameObject {
+    return <IGameObject><unknown>this._pixiLayer.createText(text, style);
+  }
 }
 
 export default Screen;

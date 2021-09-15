@@ -12,6 +12,7 @@ interface IScreen {
   ): any;
 
   createSprite(sheet: string, frame?: string): IGameObject;
+  createText(text: string, style: any): IGameObject;
 }
 
 export default IScreen;
