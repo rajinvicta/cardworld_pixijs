@@ -29,6 +29,8 @@ class CoreEntity {
   protected _activate(x: number, y: number, foreignObject: IGameObject) {
     this._position.init(x, y, foreignObject);
     this._display.init(foreignObject);
+
+    this._foreignObject = foreignObject;
   }
 }
 
