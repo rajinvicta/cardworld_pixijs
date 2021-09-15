@@ -30,6 +30,7 @@ class Position {
   set x(val: number) {
     this._x = val;
     this._foreignObject.x = val;
+    console.log(this._foreignObject, val);
   }
 
   set y(val: number) {
@@ -43,10 +44,10 @@ class Position {
   }
 
   public init(x: number, y: number, foreignObject: IGameObject) {
-    this._x = x;
-    this._y = y;
-
     this._foreignObject = foreignObject;
+    
+    this.x = x;
+    this.y = y;
   }
 
   public createNew(): Position {

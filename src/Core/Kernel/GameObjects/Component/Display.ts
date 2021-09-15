@@ -33,10 +33,10 @@ class Display {
   }
 
   public init(foreignObject: IGameObject) {
-    this._alpha = 1;
-    this._visible = true;
-
     this._foreignObject = foreignObject;
+
+    this.alpha = 1;
+    this.visible = true;
   }
 
   public createNew(): Display {
