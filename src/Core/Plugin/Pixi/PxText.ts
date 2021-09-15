@@ -80,6 +80,14 @@ class PxText {
     return this._style;
   }
 
+  get text(): string {
+    if (this._rawText) {
+      return this._rawText.text;
+    } else {
+      return "";
+    }
+  }
+
   set style(style: any){
     this._style = style;
     if(this._rawText){
@@ -96,6 +104,13 @@ class PxText {
       this._rawText.style = this._style;
     }
     this.updateTexture();
+  }
+
+  set text(val: string) {
+    if (this._rawText) {
+      this._rawText.text = val;
+      this.updateTexture();
+    }
   }
 
   get fill(){

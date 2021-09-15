@@ -35,7 +35,7 @@ class Loading implements IScene {
     let logo = this._entityFactory.sprite(20, 20, 'spritesheet', 'logo'); 
     let fps = this._entityFactory.text(500, 200, "Test 2", {"fontSize": 60, "fill": "white"});
 
-    //(<any>window).logo = logo;
+    (<any>window).fps = fps;
   }
 
   public update() {

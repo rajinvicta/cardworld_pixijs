@@ -33,7 +33,7 @@ class Screen implements IScreen {
 
   public createText(text: string, style: any): IGameObject {
     let textObj = this._pixiLayer.createText(text, style);
-    return <IGameObject><unknown>textObj.data;
+    return <IGameObject><unknown>textObj;
   }
 }
 

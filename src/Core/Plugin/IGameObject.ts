@@ -4,6 +4,9 @@ interface IGameObject {
   angle: number;
   visible: boolean;
   alpha: number;
+  text: string;
+  style: any;
+  data: any;
   createNew(): IGameObject;
 }
 

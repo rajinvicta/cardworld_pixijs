@@ -17,11 +17,29 @@ class Text extends CoreEntity {
     this._sceneManager = sceneManager;
   }
 
+  get text(): string {
+    return this._foreignObject.text;
+  }
+
+  get style(): any {
+    return this._foreignObject.style;
+  }
+
+  set text(val: string) {
+    this._foreignObject.text = val;
+  }
+
+  set style(val: any) {
+    this._foreignObject.style = val;
+  }
+
   public init(x: number, y: number, text: string, style: any) {
     let fo = this._screen.createText(text, style);
-    
-    this._sceneManager.addObject(fo);
+    this._sceneManager.addObject(fo.data);
     this._activate(x, y, fo);
+
+    console.log(fo);
+    console.log(this._foreignObject);
   }
 
   public createNew(): Text {

@@ -7,6 +7,9 @@ class GameObject implements IGameObject {
   public angle: number;
   public visible: boolean;
   public alpha: number;
+  public style: any;
+  public text: string;
+  public data: any;
 
   constructor() {
     this.x = 0;
@@ -14,6 +17,9 @@ class GameObject implements IGameObject {
     this.angle = 0;
     this.visible = true;
     this.alpha = 1;
+    this.text = "";
+    this.style = {};
+    this.data = {};
   }
 
   public createNew(): IGameObject {
