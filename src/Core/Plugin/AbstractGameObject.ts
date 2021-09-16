@@ -53,8 +53,18 @@ class AbstractGameObject implements IAbstractGameObject {
   }
 
   get anchor(): any {
-    return this._denyAccess();
+    this._denyAccess();
     return {};
+  }
+
+  get width(): number {
+    this._denyAccess();
+    return 0;
+  }
+
+  get height(): number {
+    this._denyAccess();
+    return 0;
   }
 
 
@@ -95,6 +105,14 @@ class AbstractGameObject implements IAbstractGameObject {
   }
 
   set destroy(val: any) {
+    this._denyAccess();
+  }
+
+  set width(val: number) {
+    this._denyAccess();
+  }
+
+  set height(val: number) {
     this._denyAccess();
   }
 

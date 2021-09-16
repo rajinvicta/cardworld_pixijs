@@ -2,6 +2,8 @@ interface IAbstractGameObject {
   x: number;
   y: number;
   angle: number;
+  width: number;
+  height: number;
   visible: boolean;
   alpha: number;
   text: string;

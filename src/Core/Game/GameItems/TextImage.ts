@@ -22,8 +22,8 @@ class TextImage {
     this._imageList = [];
     this._textList = [];
 
-    this._startX = 300;
-    this._gapX = 245;
+    this._startX = 150;
+    this._gapX = 40;
     this._startY = 960;
     this._maxEntities = 3;
 
@@ -33,8 +33,10 @@ class TextImage {
   public showRandom() {
     this._resetAll();
 
+    let width = 0;
+
     for (let c = 0; c < 3; c++) {
-      this._showEntity(c, this._rnd(1, 2));
+      width += <number>this._showEntity(c, this._rnd(1, 2), width);
     }
   }
 
@@ -81,7 +83,7 @@ class TextImage {
     }
   }
 
-  private _showEntity(position: number, form: number) {
+  private _showEntity(position: number, form: number, width: number = 0) {
     if (form == 1) {
       let sprNum = this._rnd(0, this._imageList.length - 1);
       let sprName = this._imageList[sprNum];
@@ -91,24 +93,30 @@ class TextImage {
         this._imageEntities.push(entity);
 
         entity.display.updateTexture('main', sprName);
-        entity.position.x = this._startX + (position * this._gapX);
+        entity.position.x = this._startX + width + (position * this._gapX);
         entity.position.y = this._startY;
-        entity.position.anchorX = 0.5;
+        entity.position.anchorX = 0;
         entity.position.anchorY = 0.5;
+
+        return entity.display.width;
       }
     } else {
       let txtNum = this._rnd(0, this._textList.length -1);
       let txt = this._textList[txtNum];
-      let fnSize = this._rnd(25, 65);
+      let fnSize = this._rnd(45, 85);
 
       let txtEntity = this._textEntities.shift();
       if (txtEntity) {
         this._textEntities.push(txtEntity);
 
-        txtEntity.position.x = this._startX + (position * this._gapX);
+        txtEntity.position.x = this._startX + width + (position * this._gapX);
         txtEntity.position.y = this._startY;
+        txtEntity.position.anchorX = 0;
+        txtEntity.position.anchorY = 0.5;
         txtEntity.label.text = txt;
         txtEntity.label.style = {fill: 'white', fontSize: fnSize};
+
+        return txtEntity.display.width;
       }
     }
   }
