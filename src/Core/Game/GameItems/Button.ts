@@ -14,11 +14,11 @@ class Button {
     return this._sprite;
   }
 
-  public init(x: number, y: number, frame: string) {
+  public init(x: number, y: number, frame: string, onButtonUp: Function) {
     this._sprite = this._entityFactory.sprite(x, y, 'main', frame);
     this._sprite.enableInput();
     this._sprite.input.addMouseUp(() => {
-      console.log("Button pressed");
+      onButtonUp();
     })
   }
 
