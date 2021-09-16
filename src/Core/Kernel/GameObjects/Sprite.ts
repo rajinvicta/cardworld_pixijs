@@ -10,11 +10,13 @@ import Input from './Component/Input';
 class Sprite extends CoreEntity {
   private _screen: IScreen;
   private _sceneManager: ISceneManager;
+  private _abstractObject: IAbstractGameObject;
 
   constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject,
   screen: IScreen, sceneManager: ISceneManager) {
     super(position, display, input, foreignObject);
 
+    this._abstractObject = foreignObject;
     this._screen = screen;
     this._sceneManager = sceneManager;
   }
@@ -30,7 +32,7 @@ class Sprite extends CoreEntity {
     let pos = this._position.createNew();
     let dis = this._display.createNew();
     let inp = this._input.createNew();
-    let fo = this._foreignObject.createNew();
+    let fo = this._abstractObject.createNew();
 
     return new Sprite(pos, dis, inp, fo, this._screen, this._sceneManager);
   }

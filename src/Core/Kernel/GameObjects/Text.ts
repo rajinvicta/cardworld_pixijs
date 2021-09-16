@@ -13,12 +13,15 @@ class Text extends CoreEntity {
 
   private _screen: IScreen;
   private _sceneManager: ISceneManager;
+  private _abstractObject: IAbstractGameObject;
 
   constructor(position: Position, display: Display, input: Input, label: Label, foreignObject: IAbstractGameObject,
   screen: IScreen, sceneManager: ISceneManager) {
     super(position, display, input, foreignObject);
 
     this._label = label;
+
+    this._abstractObject = foreignObject;
 
     this._screen = screen;
     this._sceneManager = sceneManager;
@@ -45,7 +48,7 @@ class Text extends CoreEntity {
     let dis = this._display.createNew();
     let inp = this._input.createNew();
     let lab = this._label.createNew();
-    let fo = this._foreignObject.createNew();
+    let fo = this._abstractObject.createNew();
 
     return new Text(pos, dis, inp, lab, fo, this._screen, this._sceneManager);
   }

@@ -5,9 +5,11 @@ class Label {
   private _style: any;
 
   private _foreignObject: IAbstractGameObject;
+  private _abstractObject: IAbstractGameObject;
 
   constructor(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
+    this._abstractObject = foreignObject;
 
     this._text = "";
     this._style = {};
@@ -39,7 +41,7 @@ class Label {
   }
 
   public createNew(): Label {
-    return new Label(this._foreignObject.createNew());
+    return new Label(this._abstractObject.createNew());
   }
 
   private _updateForeignObject() {

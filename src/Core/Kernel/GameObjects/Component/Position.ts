@@ -6,9 +6,11 @@ class Position {
   private _angle: number;
 
   private _foreignObject: IAbstractGameObject;
+  private _abstractObject: IAbstractGameObject;
 
   constructor(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
+    this._abstractObject  = foreignObject;
 
     this._x = 0;
     this._y = 0;
@@ -50,7 +52,7 @@ class Position {
   }
 
   public createNew(): Position {
-    return new Position(this._foreignObject.createNew());
+    return new Position(this._abstractObject.createNew());
   }
   
 }

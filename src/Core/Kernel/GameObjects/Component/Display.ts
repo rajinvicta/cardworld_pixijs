@@ -6,8 +6,11 @@ class Display {
   private _visible: boolean;
 
   private _foreignObject: IAbstractGameObject;
+  private _abstractObject: IAbstractGameObject;
 
   constructor(foreignObject: IAbstractGameObject) {
+    this._foreignObject = foreignObject;
+    this._abstractObject = foreignObject;
     this._foreignObject = foreignObject;
 
     this._alpha = 1;
@@ -40,7 +43,7 @@ class Display {
   }
 
   public createNew(): Display {
-    return new Display(this._foreignObject.createNew());
+    return new Display(this._abstractObject.createNew());
   }
 }
 

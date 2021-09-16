@@ -6,8 +6,11 @@ class Input {
 
   private _foreignObject: IAbstractGameObject;
 
+  private _abstractObject: IAbstractGameObject;
+
   constructor(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
+    this._abstractObject = foreignObject;
 
     this._onMouseUp = [];
   }
@@ -27,7 +30,7 @@ class Input {
   }
 
   public createNew(): Input {
-    return new Input(this._foreignObject.createNew());
+    return new Input(this._abstractObject.createNew());
   }
 
   private _executeAll() {
