@@ -65,17 +65,19 @@ class PixiLayer {
   }
 
   public createSprite(sheet: string, frame?: string): PIXI.Sprite | null {
-    if (frame) {
-      let spritesheet = PIXI.Loader.shared.resources[sheet].spritesheet;
+    let texture = this._getTexture(sheet, frame);
 
-      if (spritesheet) {
-        return new PIXI.Sprite(spritesheet.textures[frame]);
-      } else {
-        console.error("NO spritesheet '%s' found!", sheet);
-        return null;
-      }
+    if (texture) {
+      return new PIXI.Sprite(texture);
     } else {
-      return PIXI.Sprite.from(sheet);
+      return null;
+    }
+  }
+
+  public updateTexture(sprite: PIXI.Sprite, sheet: string, frame?: string) {
+    let texture = this._getTexture(sheet, frame);
+    if (texture) {
+      sprite.texture = texture;
     }
   }
 
@@ -115,6 +117,21 @@ class PixiLayer {
       let url = resList[c].url;
 
       PIXI.Loader.shared.add(name, url);
+    }
+  }
+
+  private _getTexture(sheet: string, frame?: string): PIXI.Texture | null {
+    if (frame) {
+      let spritesheet = PIXI.Loader.shared.resources[sheet].spritesheet;
+
+      if (spritesheet) {
+        return spritesheet.textures[frame];
+      } else {
+        console.error("NO spritesheet '%s' found!", sheet);
+        return null;
+      }
+    } else {
+      return PIXI.Texture.from(sheet);
     }
   }
 }

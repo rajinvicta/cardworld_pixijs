@@ -1,4 +1,5 @@
 import IAbstractGameObject from "../../../Plugin/IAbstractGameObject";
+import IScreen from "../../../Plugin/IScreen";
 import GameObject from "../../../Plugin/IAbstractGameObject";
 
 class Display {
@@ -7,11 +8,12 @@ class Display {
 
   private _foreignObject: IAbstractGameObject;
   private _abstractObject: IAbstractGameObject;
+  private _screen: IScreen;
 
-  constructor(foreignObject: IAbstractGameObject) {
+  constructor(foreignObject: IAbstractGameObject, screen: IScreen) {
     this._foreignObject = foreignObject;
     this._abstractObject = foreignObject;
-    this._foreignObject = foreignObject;
+    this._screen = screen;
 
     this._alpha = 1;
     this._visible = true;
@@ -39,6 +41,10 @@ class Display {
     this._foreignObject.destroy();
   }
 
+  public updateTexture(sheet: string, frame?: string) {
+    this._screen.updateTexture(this._foreignObject, sheet, frame);
+  }
+
   public init(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
@@ -47,7 +53,7 @@ class Display {
   }
 
   public createNew(): Display {
-    return new Display(this._abstractObject.createNew());
+    return new Display(this._abstractObject.createNew(), this._screen);
   }
 }
 

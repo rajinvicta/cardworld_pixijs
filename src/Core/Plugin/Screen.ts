@@ -35,6 +35,10 @@ class Screen implements IScreen {
     let textObj = this._pixiLayer.createText(text, style);
     return <IAbstractGameObject><unknown>textObj;
   }
+
+  public updateTexture(sprite: IAbstractGameObject, sheet: string, frame?: string) {
+    this._pixiLayer.updateTexture(<any>sprite, sheet, frame);
+  }
 }
 
 export default Screen;
