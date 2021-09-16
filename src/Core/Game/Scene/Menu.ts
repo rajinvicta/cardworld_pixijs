@@ -4,18 +4,21 @@ import Sprite from "../../Kernel/GameObjects/Sprite";
 import Button from "../GameItems/Button";
 
 import IScene from "../../Kernel/GameObjects/IScene";
+import ISceneManager from "../../Plugin/ISceneManager";
 
 
 class Menu implements IScene {
   private _entityFactory: EntityFactory;
+  private _sceneManager: ISceneManager;
   private _card: Button;
   private _mix: Button;
   private _fire: Button;
   private _background: Sprite;
   private _logo: Sprite;
 
-  constructor(entityFactory: EntityFactory, button: Button, sprite: Sprite) {
+  constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, button: Button, sprite: Sprite) {
     this._entityFactory = entityFactory;
+    this._sceneManager = sceneManager;
     this._card = button;
     this._mix = button;
     this._fire = button;
@@ -54,9 +57,13 @@ class Menu implements IScene {
 
     let startY = 900; 
 
-    this._card.init(303, startY + 0, 'btn_card');
-    this._mix.init(303, startY + 250, 'btn_mixed');
-    this._fire.init(303, startY + 500, 'btn_fire');
+    this._card.init(303, startY + 0, 'btn_card', () => {this._startLevel('CardMode')});
+    this._mix.init(303, startY + 250, 'btn_mixed', () => {this._startLevel('MixMode')});
+    this._fire.init(303, startY + 500, 'btn_fire', () => {this._startLevel('FireMode')});
+  }
+
+  private _startLevel(levelName: string) {
+    this._sceneManager.startScene(levelName);
   }
 
 }
