@@ -22,6 +22,8 @@ class ExecTime {
     this._maxExec = maxExecutions;
     this._time = time;
     this._completeExecutions = 0;
+
+    this._tryExecution();
   }
 
   public update() {
