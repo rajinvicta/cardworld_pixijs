@@ -52,6 +52,11 @@ class AbstractGameObject implements IAbstractGameObject {
     return {};
   }
 
+  get anchor(): any {
+    return this._denyAccess();
+    return {};
+  }
+
 
   set x(val: number) {
     this._denyAccess();

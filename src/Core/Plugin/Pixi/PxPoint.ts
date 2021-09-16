@@ -59,6 +59,16 @@ class PxPoint {
       this._onUpdateY(y);
     }
   }
+
+  public set(x: number, y: number | null = null) {
+    this._x = x;
+    this._onUpdateX(x);
+
+    if (y != null) {
+      this._y = y;
+      this._onUpdateY(y);
+    }
+  }
 }
 
 export default PxPoint;

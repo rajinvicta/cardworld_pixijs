@@ -10,6 +10,7 @@ interface IAbstractGameObject {
   interactive: boolean;
   on(eventName: string, foo: Function): void;
   destroy(): void;
+  anchor: {set: (x: number, y?: number) => {}};
   createNew(): IAbstractGameObject;
 }
 

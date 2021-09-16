@@ -142,7 +142,7 @@ class PxText {
       if (this._data != null) this._data.anchor.x = xVal;
     }, (yVal: number) => {
       if (this._data != null) this._data.anchor.y = yVal;
-    })
+    });
   }
 
   get data(): Sprite {
@@ -167,6 +167,10 @@ class PxText {
     }
     console.warn('cannot return alpha for object that is not initialized!');
     return -1;
+  }
+
+  get anchor(): PxPoint {
+    return <PxPoint>this._anchor;
   }
 
   set alpha(alpha: number){

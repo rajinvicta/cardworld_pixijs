@@ -3,6 +3,8 @@ import IAbstractGameObject from "../../../Plugin/IAbstractGameObject";
 class Position {
   private _x: number;
   private _y: number;
+  private _anchorX: number;
+  private _anchorY: number;
   private _angle: number;
 
   private _foreignObject: IAbstractGameObject;
@@ -15,6 +17,8 @@ class Position {
     this._x = 0;
     this._y = 0;
     this._angle = 0;
+    this._anchorX = 0;
+    this._anchorY = 0;
   }
 
   get x(): number {
@@ -42,6 +46,16 @@ class Position {
   set angle(val: number) {
     this._angle = val;
     this._foreignObject.angle = val;
+  }
+
+  set anchorX(val: number) {
+    this._anchorX = val;
+    this._foreignObject.anchor.set(this._anchorX, this._anchorY);
+  }
+
+  set anchorY(val: number) {
+    this._anchorY = val;
+    this._foreignObject.anchor.set(this._anchorX, this._anchorY);
   }
 
   public init(x: number, y: number, foreignObject: IAbstractGameObject) {
