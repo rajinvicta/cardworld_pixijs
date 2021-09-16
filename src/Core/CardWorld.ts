@@ -5,6 +5,9 @@ import ISceneManager from './Plugin/ISceneManager';
 
 import Loading from './Game/Scene/Loading';
 import Menu from './Game/Scene/Menu';
+import CardMode from './Game/Scene/CardMode';
+import MixMode from './Game/Scene/MixMode';
+import FireMode from './Game/Scene/FireMode';
 
 class CardWorld {
   private _config: Config;
@@ -14,10 +17,13 @@ class CardWorld {
 
   private _loading: Loading;
   private _menu: Menu;
+  private _cardMode: CardMode;
+  private _mixMode: MixMode;
+  private _fireMode: FireMode;
   
 
   constructor(config: Config, loop: Loop, screen: IScreen, sceneManager: ISceneManager,
-  loading: Loading, menu: Menu) {
+  loading: Loading, menu: Menu, cardMode: CardMode, mixMode: MixMode, fireMode: FireMode) {
     this._config = config;
     this._loop = loop;
     this._screen = screen;
@@ -25,6 +31,9 @@ class CardWorld {
 
     this._loading = loading;
     this._menu = menu;
+    this._cardMode = cardMode;
+    this._mixMode = mixMode;
+    this._fireMode = fireMode;
   }
 
   public startGame() {
@@ -44,6 +53,9 @@ class CardWorld {
 
     this._sceneManager.addScene('Loading', this._loading);
     this._sceneManager.addScene('Menu', this._menu);
+    this._sceneManager.addScene('CardMode', this._cardMode);
+    this._sceneManager.addScene('MixMode', this._mixMode);
+    this._sceneManager.addScene('FireMode', this._fireMode);
   }
 
   private _startFirstScene() {
