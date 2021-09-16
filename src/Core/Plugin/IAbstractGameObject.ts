@@ -7,6 +7,7 @@ interface IAbstractGameObject {
   text: string;
   style: any;
   data: any;
+  on(eventName: string, foo: Function): void;
   createNew(): IAbstractGameObject;
 }
 

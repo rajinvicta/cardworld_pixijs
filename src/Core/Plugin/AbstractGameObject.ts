@@ -84,6 +84,10 @@ class AbstractGameObject implements IAbstractGameObject {
     return new AbstractGameObject();
   }
 
+  public on(eventName: string, foo: Function) {
+
+  }
+
   private _denyAccess() {
     console.error("Can not access the AbstractGameObject!");
   }

@@ -2,15 +2,18 @@ import IAbstractGameObject from "../../Plugin/IAbstractGameObject";
 
 import Position from './Component/Position';
 import Display from './Component/Display';
+import Input from './Component/Input';
 
 class CoreEntity {
   protected _position: Position;
   protected _display: Display;
+  protected _input: Input;
   protected _foreignObject: IAbstractGameObject;
 
-  constructor(position: Position, display: Display, foreignObject: IAbstractGameObject) {
+  constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject) {
     this._position = position;
     this._display = display;
+    this._input = input;
     this._foreignObject = foreignObject;
   }
 
@@ -24,6 +27,10 @@ class CoreEntity {
 
   get foreignObject(): IAbstractGameObject {
     return this._foreignObject;
+  }
+
+  public enableInput() {
+    this._input.init(this._foreignObject);
   }
 
   protected _activate(x: number, y: number, foreignObject: IAbstractGameObject) {
