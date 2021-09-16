@@ -1,7 +1,7 @@
 interface IScene {
   preload(): Promise<any>;
   create(): void;
-  update(): void;
+  update(dt?: number): void;
   shutdown(): void;
 }
 

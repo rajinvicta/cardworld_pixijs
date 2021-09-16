@@ -1,9 +1,11 @@
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
+import { TweenObject } from "../../Plugin/ITweenJs";
 import Sprite from "../../Kernel/GameObjects/Sprite";
 
 class Deck {
   private _entityFactory: EntityFactory;
   private _cards: Sprite[];
+  private _tweens: TweenObject[];
 
   private _maxCards: number;
   private _cardHeight: number;
@@ -14,6 +16,7 @@ class Deck {
     this._entityFactory = entityFactory;
 
     this._cards = [];
+    this._tweens = [];
     this._maxCards = 72;
     this._cardHeight = 232;
     this._cardStart = 250;
@@ -21,6 +24,9 @@ class Deck {
   }
 
   public init(x: number) {
+    this._cards = [];
+    this._tweens = [];
+    
     this._populateCards(x);
   }
 
@@ -30,10 +36,24 @@ class Deck {
 
   public moveBack(card: Sprite) {
     let xy = this._getNextXY();
-    card.position.x = xy.x;
-    card.position.y = xy.y;
+    let tw =  this._entityFactory.tween(card.position, {x: xy.x, y: xy.y}, 2000, () => {
+      let twIndex = this._tweens.indexOf(tw);
+      this._tweens.splice(twIndex, 1);
+    });
+
+    tw.start();
+
+    this._tweens.push(tw);
 
     this._cards.push(card);
+  }
+
+  public update(dt: number) {
+    for (let c = 0; c < this._tweens.length; c++) {
+      let to = this._tweens[c];
+      //console.log("Updating ", dt);
+      to.update(dt);
+    }
   }
 
   private _populateCards(x: number) {
