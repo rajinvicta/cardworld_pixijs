@@ -3,17 +3,20 @@ import Resource from "../../Data/Resource";
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
 
 import IScene from "../../Kernel/GameObjects/IScene";
+import ISceneManager from "../../Plugin/ISceneManager";
 
 
 class Loading implements IScene {
   private _gfxLoader: IGfxLoader;
   private _resource: Resource;
   private _entityFactory: EntityFactory;
+  private _sceneManager: ISceneManager;
 
-  constructor(gfxLoader: IGfxLoader, resource: Resource, entityFactory: EntityFactory) {
+  constructor(gfxLoader: IGfxLoader, resource: Resource, entityFactory: EntityFactory, sceneManager: ISceneManager) {
     this._gfxLoader = gfxLoader;
     this._resource = resource;
     this._entityFactory = entityFactory;
+    this._sceneManager = sceneManager;
   }
 
   public async preload(): Promise<void> {
@@ -38,7 +41,7 @@ class Loading implements IScene {
     let loading = this._entityFactory.text(414, 965, "Loading", {"fontSize": 60, "fill": "white"});
 
     this._loadFiles().then(() => {
-      console.log("_loadFiles complete!");
+      this._startMenu();
     })
   }
 
@@ -62,6 +65,10 @@ class Loading implements IScene {
         resolve();
       });
     });
+  }
+
+  private _startMenu() {
+    this._sceneManager.startScene('Menu');
   }
 
 }
