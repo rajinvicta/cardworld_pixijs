@@ -1,4 +1,4 @@
-import IGameObject from "../../Plugin/IGameObject";
+import IAbstractGameObject from "../../Plugin/IAbstractGameObject";
 
 class Button {
 

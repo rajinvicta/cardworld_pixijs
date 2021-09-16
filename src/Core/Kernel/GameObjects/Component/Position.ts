@@ -1,13 +1,13 @@
-import IGameObject from "../../../Plugin/IGameObject";
+import IAbstractGameObject from "../../../Plugin/IAbstractGameObject";
 
 class Position {
   private _x: number;
   private _y: number;
   private _angle: number;
 
-  private _foreignObject: IGameObject;
+  private _foreignObject: IAbstractGameObject;
 
-  constructor(foreignObject: IGameObject) {
+  constructor(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
     this._x = 0;
@@ -42,7 +42,7 @@ class Position {
     this._foreignObject.angle = val;
   }
 
-  public init(x: number, y: number, foreignObject: IGameObject) {
+  public init(x: number, y: number, foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
     this.x = x;

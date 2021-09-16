@@ -1,7 +1,7 @@
-import IGameObject from "./IGameObject";
-//Place holder object allocated by default to avoid IGameObject | null situations
+import IAbstractGameObject from "./IAbstractGameObject";
+//Place holder object allocated by default to avoid IAbstractGameObject | null situations
 
-class GameObject implements IGameObject {
+class AbstractGameObject implements IAbstractGameObject {
   public x: number;
   public y: number;
   public angle: number;
@@ -22,9 +22,9 @@ class GameObject implements IGameObject {
     this.data = {};
   }
 
-  public createNew(): IGameObject {
-    return new GameObject();
+  public createNew(): IAbstractGameObject {
+    return new AbstractGameObject();
   }
 }
 
-export default GameObject;
+export default AbstractGameObject;

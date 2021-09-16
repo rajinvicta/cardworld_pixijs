@@ -2,7 +2,7 @@ import SceneData from "../Data/SceneData";
 import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
 import Loop from "../Control/Loop";
-import IGameObject from "./IGameObject";
+import IAbstractGameObject from "./IAbstractGameObject";
 
 class SceneManager {
   private _pixiLayer: PixiLayer;
@@ -51,13 +51,13 @@ class SceneManager {
     }
   }
 
-  public addObject(obj: IGameObject) {
+  public addObject(obj: IAbstractGameObject) {
     if (this._currentScene) {
       this._pixiLayer.addObject(this._currentScene.container, obj);
     }
   }
 
-  public removeObject(obj: IGameObject) {
+  public removeObject(obj: IAbstractGameObject) {
     if (this._currentScene) {
       this._pixiLayer.removeObject(this._currentScene.container, obj);
     }

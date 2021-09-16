@@ -1,4 +1,4 @@
-interface IGameObject {
+interface IAbstractGameObject {
   x: number;
   y: number;
   angle: number;
@@ -7,7 +7,7 @@ interface IGameObject {
   text: string;
   style: any;
   data: any;
-  createNew(): IGameObject;
+  createNew(): IAbstractGameObject;
 }
 
-export default IGameObject;
+export default IAbstractGameObject;

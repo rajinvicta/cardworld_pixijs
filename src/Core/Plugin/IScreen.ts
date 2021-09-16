@@ -1,4 +1,4 @@
-import IGameObject from "./IGameObject";
+import IAbstractGameObject from "./IAbstractGameObject";
 
 interface IScreen {
   startRenderer(width: number, height: number, antialias: boolean, transparent: boolean): void;
@@ -11,8 +11,8 @@ interface IScreen {
     autoResize?: boolean
   ): any;
 
-  createSprite(sheet: string, frame?: string): IGameObject;
-  createText(text: string, style: any): IGameObject;
+  createSprite(sheet: string, frame?: string): IAbstractGameObject;
+  createText(text: string, style: any): IAbstractGameObject;
 }
 
 export default IScreen;

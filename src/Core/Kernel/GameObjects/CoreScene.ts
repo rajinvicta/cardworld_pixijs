@@ -2,11 +2,11 @@ import CoreEntity from "./CoreEntity";
 
 import Position from "./Component/Position";
 import Display from "./Component/Display";
-import IGameObject from "../../Plugin/IGameObject";
+import IAbstractGameObject from "../../Plugin/IAbstractGameObject";
 
 class CoreScene extends CoreEntity {
 
-  constructor(position: Position, display: Display, foreignObject: IGameObject) {
+  constructor(position: Position, display: Display, foreignObject: IAbstractGameObject) {
     super(position, display, foreignObject);
   }
 }

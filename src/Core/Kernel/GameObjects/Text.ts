@@ -2,7 +2,7 @@ import CoreEntity from './CoreEntity';
 
 import Position from './Component/Position';
 import Display from './Component/Display';
-import IGameObject from '../../Plugin/IGameObject';
+import IAbstractGameObject from '../../Plugin/IAbstractGameObject';
 import IScreen from "../../Plugin/IScreen";
 import ISceneManager from "../../Plugin/ISceneManager";
 
@@ -10,7 +10,8 @@ class Text extends CoreEntity {
   private _screen: IScreen;
   private _sceneManager: ISceneManager;
 
-  constructor(position: Position, display: Display, foreignObject: IGameObject, screen: IScreen, sceneManager: ISceneManager) {
+  constructor(position: Position, display: Display, foreignObject: IAbstractGameObject,
+  screen: IScreen, sceneManager: ISceneManager) {
     super(position, display, foreignObject);
 
     this._screen = screen;

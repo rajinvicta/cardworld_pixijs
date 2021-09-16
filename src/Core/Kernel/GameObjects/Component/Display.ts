@@ -1,13 +1,13 @@
-import IGameObject from "../../../Plugin/IGameObject";
-import GameObject from "../../../Plugin/IGameObject";
+import IAbstractGameObject from "../../../Plugin/IAbstractGameObject";
+import GameObject from "../../../Plugin/IAbstractGameObject";
 
 class Display {
   private _alpha: number;
   private _visible: boolean;
 
-  private _foreignObject: IGameObject;
+  private _foreignObject: IAbstractGameObject;
 
-  constructor(foreignObject: IGameObject) {
+  constructor(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
     this._alpha = 1;
@@ -32,7 +32,7 @@ class Display {
     this._foreignObject.visible = val;
   }
 
-  public init(foreignObject: IGameObject) {
+  public init(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
     this.alpha = 1;
