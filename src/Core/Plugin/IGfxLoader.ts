@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js"
 import type { Dict } from '@pixi/utils';
 
-import Resource from "../Data/Resource";
+import Resource from "../Kernel/Data/Resource";
 
 interface IGfxLoader {
   addResources(resList: Resource[]): void;

@@ -1,9 +1,9 @@
 import ControlContainer from "../Dep/ControlContainer";
-import Game from "./Game";
+import CardWorld from "./CardWorld";
 
 let cc = new ControlContainer();
-let game = <Game>cc.getMain();
+let cardWorld = <CardWorld>cc.getMain();
 
-game.startGame();
+cardWorld.startGame();
 
 console.log("Welcome to CardWorld!");

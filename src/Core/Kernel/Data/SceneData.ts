@@ -1,5 +1,5 @@
-import IScene from "../Kernel/GameObjects/IScene";
-import IScreen from "../Plugin/IScreen";
+import IScene from "../GameObjects/IScene";
+import IScreen from "../../Plugin/IScreen";
 
 class SceneData {
   private _name: string;

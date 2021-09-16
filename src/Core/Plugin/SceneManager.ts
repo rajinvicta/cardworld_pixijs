@@ -1,7 +1,7 @@
-import SceneData from "../Data/SceneData";
+import SceneData from "../Kernel/Data/SceneData";
 import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
-import Loop from "../Control/Loop";
+import Loop from "../Kernel/Control/Loop";
 import IAbstractGameObject from "./IAbstractGameObject";
 
 class SceneManager {

@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js"
-import Resource from "../../Data/Resource";
+import Resource from "../../Kernel/Data/Resource";
 import type { Dict } from '@pixi/utils';
 import PxText from "./PxText";
 

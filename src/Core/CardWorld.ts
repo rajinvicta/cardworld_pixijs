@@ -1,12 +1,12 @@
-import Config from './Control/Config';
-import Loop from './Control/Loop';
+import Config from './Kernel/Control/Config';
+import Loop from './Kernel/Control/Loop';
 import IScreen from './Plugin/IScreen';
 import ISceneManager from './Plugin/ISceneManager';
 
 import Loading from './Game/Scene/Loading';
 import Menu from './Game/Scene/Menu';
 
-class Game {
+class CardWorld {
   private _config: Config;
   private _loop: Loop;
   private _screen: IScreen;
@@ -52,4 +52,4 @@ class Game {
   
 }
 
-export default Game;
+export default CardWorld;

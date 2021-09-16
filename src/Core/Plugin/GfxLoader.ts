@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js"
 import type { Dict } from '@pixi/utils';
 
 import PixiLayer from "./Pixi/PixiLayer";
-import Resource from "../Data/Resource";
+import Resource from "../Kernel/Data/Resource";
 
 class GfxLoader {
   private _pixiLayer: PixiLayer;

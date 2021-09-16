@@ -1,5 +1,5 @@
 import IGfxLoader from "../../Plugin/IGfxLoader";
-import Resource from "../../Data/Resource";
+import Resource from "../../Kernel/Data/Resource";
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
 
 import IScene from "../../Kernel/GameObjects/IScene";

@@ -16,8 +16,8 @@ class ControlContainer {
     this._addDepends();
   }
 
-  public getMain(): Game {
-    let spEntity = <Game>this._smartDepend.resolve(this._Game);
+  public getMain(): CardWorld {
+    let spEntity = <CardWorld>this._smartDepend.resolve(this._CardWorld);
 
     return spEntity;
   }
