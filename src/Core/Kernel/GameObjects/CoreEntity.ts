@@ -25,6 +25,10 @@ class CoreEntity {
     return this._display;
   }
 
+  get input(): Input {
+    return this._input;
+  }
+
   get foreignObject(): IAbstractGameObject {
     return this._foreignObject;
   }

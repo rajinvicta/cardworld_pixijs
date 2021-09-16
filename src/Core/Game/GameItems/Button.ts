@@ -16,6 +16,10 @@ class Button {
 
   public init(x: number, y: number, frame: string) {
     this._sprite = this._entityFactory.sprite(x, y, 'main', frame);
+    this._sprite.enableInput();
+    this._sprite.input.addMouseUp(() => {
+      console.log("Button pressed");
+    })
   }
 
   public createNew(): Button {

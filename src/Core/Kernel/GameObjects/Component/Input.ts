@@ -19,7 +19,9 @@ class Input {
   public init(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
-    this._foreignObject.on('pointerdown', () => {
+    this._foreignObject.interactive = true;
+
+    this._foreignObject.on('pointerup', () => {
       this._executeAll();
     })
   }

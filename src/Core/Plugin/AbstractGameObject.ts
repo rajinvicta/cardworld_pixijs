@@ -27,6 +27,11 @@ class AbstractGameObject implements IAbstractGameObject {
     return 1;
   }
 
+  get interactive(): boolean {
+    this._denyAccess();
+    return false;
+  }
+
   get style(): any {
     this._denyAccess();
     return {};
@@ -64,6 +69,10 @@ class AbstractGameObject implements IAbstractGameObject {
   }
 
   set style(val: any) {
+    this._denyAccess();
+  }
+
+  set interactive(val: boolean) {
     this._denyAccess();
   }
 
