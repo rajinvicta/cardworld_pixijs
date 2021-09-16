@@ -18,13 +18,14 @@ class Loading implements IScene {
 
   public async preload(): Promise<void> {
     return new Promise((resolve: Function, reject: Function) => {
+      let loading = this._entityFactory.text(414, 965, "Loading", {"fontSize": 60, "fill": "white"});
+
       let resourceList = this._resource.createArray([
-        {name: "spritesheet", url: "assets/spritesheet.json"}
+        {name: "preload", url: "assets/preload.json"}
       ]);
 
       this._gfxLoader.addResources(resourceList);
       this._gfxLoader.download(() => {}, () => {
-        console.log("Download Complete"); 
         resolve();
       });
       
@@ -32,10 +33,13 @@ class Loading implements IScene {
   }
 
   public create() {
-    let logo = this._entityFactory.sprite(20, 20, 'spritesheet', 'logo'); 
-    let fps = this._entityFactory.text(500, 200, "Test 2", {"fontSize": 60, "fill": "white"});
+    let bg = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    let logo = this._entityFactory.sprite(162, 690-300, 'preload', 'logo');
+    let loading = this._entityFactory.text(414, 965, "Loading", {"fontSize": 60, "fill": "white"});
 
-    (<any>window).fps = fps;
+    this._loadFiles().then(() => {
+      console.log("_loadFiles complete!");
+    })
   }
 
   public update() {
@@ -43,7 +47,21 @@ class Loading implements IScene {
   }
 
   public shutdown() {
+    console.log("Good bye world!");
+  }
 
+  private async _loadFiles(): Promise<void> {
+    return new Promise((resolve: Function, reject: Function) => {
+      let resourceList = this._resource.createArray([
+        {name: "main", url: "assets/main.json"}
+      ]);
+
+      this._gfxLoader.addResources(resourceList);
+      this._gfxLoader.download(() => {}, () => {
+        console.log("Download Complete"); 
+        resolve();
+      });
+    });
   }
 
 }
