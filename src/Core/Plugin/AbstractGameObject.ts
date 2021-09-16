@@ -47,6 +47,11 @@ class AbstractGameObject implements IAbstractGameObject {
     return {};
   }
 
+  get destroy(): any {
+    this._denyAccess();
+    return {};
+  }
+
 
   set x(val: number) {
     this._denyAccess();
@@ -81,6 +86,10 @@ class AbstractGameObject implements IAbstractGameObject {
   }
 
   set data(val: any) {
+    this._denyAccess();
+  }
+
+  set destroy(val: any) {
     this._denyAccess();
   }
 

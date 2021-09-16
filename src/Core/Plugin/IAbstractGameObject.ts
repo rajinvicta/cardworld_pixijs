@@ -9,6 +9,7 @@ interface IAbstractGameObject {
   data: any;
   interactive: boolean;
   on(eventName: string, foo: Function): void;
+  destroy(): void;
   createNew(): IAbstractGameObject;
 }
 

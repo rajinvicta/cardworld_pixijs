@@ -35,6 +35,10 @@ class Display {
     this._foreignObject.visible = val;
   }
 
+  public destroy() {
+    this._foreignObject.destroy();
+  }
+
   public init(foreignObject: IAbstractGameObject) {
     this._foreignObject = foreignObject;
 
