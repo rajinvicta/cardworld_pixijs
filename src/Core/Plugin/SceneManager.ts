@@ -3,6 +3,7 @@ import IScene from "../Kernel/GameObjects/IScene"
 import PixiLayer from "./Pixi/PixiLayer";
 import Loop from "../Kernel/Control/Loop";
 import IAbstractGameObject from "./IAbstractGameObject";
+import {Container} from "pixi.js";
 
 class SceneManager {
   private _pixiLayer: PixiLayer;
@@ -63,9 +64,9 @@ class SceneManager {
     }
   }
 
-  private _update() {
+  private _update(dt: number) {
     if (this._currentScene && this._canUpdate) {
-      this._currentScene.scene.update();
+      this._currentScene.scene.update(dt);
     }
   }
 
@@ -82,6 +83,18 @@ class SceneManager {
     }
 
     if (this._pixiLayer.stage) {
+
+      //Destroy old objects
+      let level = <Container>this._pixiLayer.stage.children[0];
+
+      if (level) {
+        for (let c = 0; c < level.children.length; c++) {
+          let obj = level.children[c];
+          obj.destroy();
+        }
+      }
+      
+      
       this._pixiLayer.stage.removeChildren();
       this._pixiLayer.stage.addChild(scene.container);
     }
