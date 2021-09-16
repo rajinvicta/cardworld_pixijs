@@ -24,8 +24,16 @@ class Deck {
     this._populateCards(x);
   }
 
-  public moveBack(card: Sprite) {
+  public shift(): Sprite | undefined {
+    return this._cards.shift();
+  }
 
+  public moveBack(card: Sprite) {
+    let xy = this._getNextXY();
+    card.position.x = xy.x;
+    card.position.y = xy.y;
+
+    this._cards.push(card);
   }
 
   private _populateCards(x: number) {

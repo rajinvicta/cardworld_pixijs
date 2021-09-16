@@ -70,9 +70,16 @@ class CardMode implements IScene {
 
   private _startMoveListners() {
     this._execTime.addFoo(() => {
-      console.log("hi");
+      this._moveCard();
     })
-    this._execTime.start(1000, 20);
+    this._execTime.start(1000, 72);
+  }
+
+  private _moveCard() {
+    let elm = this._deck1.shift();
+      if (elm) {
+        this._deck2.moveBack(elm);
+      }
   }
 
 }
