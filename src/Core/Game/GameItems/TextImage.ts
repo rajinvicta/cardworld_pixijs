@@ -6,52 +6,110 @@ import Text from "../../Kernel/GameObjects/Text";
 
 class TextImage {
   private _entityFactory: EntityFactory;
-  private _entityList: any[];
+  private _imageEntities: Sprite[];
+  private _textEntities: Text[];
   private _imageList: string[];
   private _textList: string[];
 
+  private _startX: number;
+  private _gapX: number;
+  private _startY: number;
+  private _maxEntities: number;
+
   constructor(entityFactory: EntityFactory) {
-    this._entityList = [];
+    this._imageEntities = [];
+    this._textEntities = [];
     this._imageList = [];
     this._textList = [];
+
+    this._startX = 300;
+    this._gapX = 245;
+    this._startY = 960;
+    this._maxEntities = 3;
 
     this._entityFactory = entityFactory;
   }
 
   public showRandom() {
-    this._clearOld();
+    this._resetAll();
 
     for (let c = 0; c < 3; c++) {
-      let entity = this._createEntity(c, this._rnd(1, 2));
-      this._entityList.push(entity);
+      this._showEntity(c, this._rnd(1, 2));
     }
   }
 
+  public init() {
+    this._clearOld();
+    this._allocateEntities();
+  }
+
+  private _allocateEntities() {
+    for (let c = 0; c < this._maxEntities; c++) {
+      let img = this._entityFactory.sprite(-5000, -5000, 'main', this._imageList[0]);
+      this._imageEntities.push(img);
+
+      let txt = this._entityFactory.text(-5000, -5000, 'None', {});
+      this._textEntities.push(txt);
+    }
+  }
+
+  private _resetAll() {
+    this._resetObjects(this._imageEntities);
+    this._resetObjects(this._textEntities);
+  }
+
   private _clearOld() {
-    for (let c = 0; c < this._entityList.length; c++) {
-      let entity = this._entityList[c];
+    this._clearObjects(this._imageEntities);
+    this._clearObjects(this._textEntities);
+
+    this._imageEntities = [];
+    this._textEntities = [];
+  }
+
+  private _clearObjects(arr: CoreEntity[]) {
+    for (let c = 0; c < arr.length; c++) {
+      let entity = arr[c];
       entity.display.destroy();
     }
   }
 
-  private _createEntity(position: number, form: number) {
+  private _resetObjects(arr: CoreEntity[]) {
+    for (let c = 0; c < arr.length; c++) {
+      let entity = arr[c];
+      entity.position.x = -5000;
+      entity.position.y = -5000;
+    }
+  }
+
+  private _showEntity(position: number, form: number) {
     if (form == 1) {
       let sprNum = this._rnd(0, this._imageList.length - 1);
       let sprName = this._imageList[sprNum];
+      
+      let entity = this._imageEntities.shift();
+      if (entity) {
+        this._imageEntities.push(entity);
 
-      let entity = this._entityFactory.sprite(300 + (position * 245), 450, 'main', sprName);
-      entity.position.anchorX = 0.5;
-      entity.position.anchorY = 0.5;
-      return entity;
+        entity.display.updateTexture('main', sprName);
+        entity.position.x = this._startX + (position * this._gapX);
+        entity.position.y = this._startY;
+        entity.position.anchorX = 0.5;
+        entity.position.anchorY = 0.5;
+      }
     } else {
       let txtNum = this._rnd(0, this._textList.length -1);
       let txt = this._textList[txtNum];
       let fnSize = this._rnd(25, 65);
 
-      let entity = this._entityFactory.text(300 + (position * 245), 450, txt, {fill: 'white', fontSize: fnSize});
-      entity.position.anchorX = 0.5;
-      entity.position.anchorY = 0.5;
-      return entity;
+      let txtEntity = this._textEntities.shift();
+      if (txtEntity) {
+        this._textEntities.push(txtEntity);
+
+        txtEntity.position.x = this._startX + (position * this._gapX);
+        txtEntity.position.y = this._startY;
+        txtEntity.label.text = txt;
+        txtEntity.label.style = {fill: 'white', fontSize: fnSize};
+      }
     }
   }
 
