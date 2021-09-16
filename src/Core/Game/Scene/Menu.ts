@@ -1,5 +1,6 @@
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
 
+import Sprite from "../../Kernel/GameObjects/Sprite";
 import Button from "../GameItems/Button";
 
 import IScene from "../../Kernel/GameObjects/IScene";
@@ -10,12 +11,17 @@ class Menu implements IScene {
   private _card: Button;
   private _mix: Button;
   private _fire: Button;
+  private _background: Sprite;
+  private _logo: Sprite;
 
-  constructor(entityFactory: EntityFactory, button: Button) {
+  constructor(entityFactory: EntityFactory, button: Button, sprite: Sprite) {
     this._entityFactory = entityFactory;
     this._card = button;
     this._mix = button;
     this._fire = button;
+
+    this._background = sprite;
+    this._logo = sprite;
   }
 
   public async preload(): Promise<void> {
@@ -24,6 +30,7 @@ class Menu implements IScene {
 
   public create() {
     console.log("Menu Level");
+    this._initBackground();
     this._initButtons();
   }
 
@@ -33,6 +40,11 @@ class Menu implements IScene {
 
   public shutdown() {
 
+  }
+
+  private _initBackground() {
+    this._background = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._logo = this._entityFactory.sprite(162, 150, 'preload', 'logo');
   }
 
   private  _initButtons() {
