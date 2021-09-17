@@ -1,6 +1,6 @@
 import Sprite from "../../Kernel/GameObjects/Sprite";
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
-import {Positions} from "../../Kernel/Data/ScaleMode";
+import {Positions, Sizes} from "../../Kernel/Data/ScaleMode";
 
 class Background {
   private _entityFactory: EntityFactory;
@@ -21,6 +21,7 @@ class Background {
     this._sprite.position.anchorY = 0.5;
     this._sprite.position.fitInsideContainer(false);
     this._sprite.position.setScaleMode(Positions.center, Positions.center, 1);
+    this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);
   }
 
   public createNew(): Background {

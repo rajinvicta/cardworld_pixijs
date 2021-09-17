@@ -109,6 +109,8 @@ class Display {
     this.alpha = 1;
     this.visible = true;
 
+    this._scale.init(this._foreignObject);
+
     this._updateScale();
   }
 
@@ -129,7 +131,7 @@ class Display {
     this._foreignObject.alpha = this._alpha;
     this._foreignObject.visible = this._visible;
     this._foreignObject.scale.x = this._scale.resizeX(this._scaleX);
-    this._foreignObject.scale.y = this._scale.resizeX(this._scaleY);
+    this._foreignObject.scale.y = this._scale.resizeY(this._scaleY);  
   }
 }
 

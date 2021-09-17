@@ -1,16 +1,22 @@
+import IAbstractGameObject from "../../../Plugin/IAbstractGameObject";
 import Config from "../../Control/Config";
 import ScaleMode, {Positions, Sizes, ContainerMode} from "../../Data/ScaleMode";
 
 class Scale {
   private _config: Config;
   private _scaleMode: ScaleMode;
+  private _foreignObject: IAbstractGameObject;
+  private _abstractObject: IAbstractGameObject;
 
   private _x: number;
   private _y: number;
 
-  constructor(config: Config, scaleMode: ScaleMode) {
+  constructor(config: Config, scaleMode: ScaleMode, foreignObject: IAbstractGameObject) {
     this._config = config;
     this._scaleMode = scaleMode;
+    this._foreignObject = foreignObject;
+    this._abstractObject = foreignObject;
+
     
     this._x = 1;
     this._y = 1;
@@ -36,16 +42,33 @@ class Scale {
     this._y = val;
   }
 
+  public init(foreignObject: IAbstractGameObject) {
+    this._foreignObject = foreignObject;
+  }
+
   public reverseScale(val: number): number {
     return (val / this._getRatio());
   }
 
   public resizeX(val: number): number {
-    return (val * this._x) * this._getRatio();
+    if (this._scaleMode.sizeMode.x == Sizes.fill) {
+      return this._getFillXScale();
+    } else if (this._scaleMode.sizeMode.x == Sizes.maintain_ratio) {
+      return this._foreignObject.scale.y;
+    } else {
+      return (val * this._x) * this._getRatio();
+    }
   }
 
   public resizeY(val: number): number {
-    return (val * this._y) * this._getRatio();
+    if (this._scaleMode.sizeMode.y == Sizes.fill) {
+      
+      return this._getFillYScale();
+    } else if (this._scaleMode.sizeMode.y == Sizes.maintain_ratio) {
+      return this._foreignObject.scale.x;
+    } else {
+      return (val * this._y) * this._getRatio();
+    }
   }
 
   public placeX(val: number): number {
@@ -82,7 +105,23 @@ class Scale {
 
 
   public createNew(): Scale {
-    return new Scale(this._config, this._scaleMode.createNew());
+    return new Scale(this._config, this._scaleMode.createNew(), this._abstractObject.createNew());
+  }
+
+  private _getFillXScale() {
+    let width = this._foreignObject.width;
+    let gameWidth = this._config.displayWidth;
+
+    console.log("fill x: ", gameWidth / width, this._foreignObject.x);
+
+    return gameWidth / width;
+  }
+
+  private _getFillYScale() {
+    let height = this._foreignObject.height;
+    let gameHeight = this._config.displayHeight;
+
+    return gameHeight / height;
   }
 
 
