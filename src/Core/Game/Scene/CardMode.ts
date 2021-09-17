@@ -7,6 +7,7 @@ import Deck from "../GameItems/Deck";
 
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
+import Background from "../GameItems/Background";
 
 
 
@@ -14,13 +15,13 @@ class CardMode implements IScene {
   private _entityFactory: EntityFactory;
   private _sceneManager: ISceneManager;
   private _back: Button;
-  private _background: Sprite;
   private _execTime: ExecTime;
   private _deck1: Deck;
   private _deck2: Deck;
+  private _background: Background;
 
   constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, execTime: ExecTime,
-  button: Button, sprite: Sprite, deck1: Deck, deck2: Deck) {
+  button: Button, sprite: Sprite, deck1: Deck, deck2: Deck, background: Background) {
     this._entityFactory = entityFactory;
     this._sceneManager = sceneManager;
     this._execTime = execTime;
@@ -30,7 +31,7 @@ class CardMode implements IScene {
 
     this._back = button;
 
-    this._background = sprite;
+    this._background = background;
   }
 
   public async preload(): Promise<void> {
@@ -56,7 +57,7 @@ class CardMode implements IScene {
   }
 
   private _initBackground() {
-    this._background = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._background.init('main');
   }
 
   private  _initButtons() {

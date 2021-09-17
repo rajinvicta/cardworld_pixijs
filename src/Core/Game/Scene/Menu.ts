@@ -5,6 +5,7 @@ import Button from "../GameItems/Button";
 
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
+import Background from "../GameItems/Background";
 
 
 class Menu implements IScene {
@@ -13,17 +14,18 @@ class Menu implements IScene {
   private _card: Button;
   private _mix: Button;
   private _fire: Button;
-  private _background: Sprite;
+  private _background: Background;
   private _logo: Sprite;
 
-  constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, button: Button, sprite: Sprite) {
+  constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, button: Button, sprite: Sprite,
+  background: Background) {
     this._entityFactory = entityFactory;
     this._sceneManager = sceneManager;
     this._card = button;
     this._mix = button;
     this._fire = button;
 
-    this._background = sprite;
+    this._background = background;
     this._logo = sprite;
   }
 
@@ -46,7 +48,7 @@ class Menu implements IScene {
   }
 
   private _initBackground() {
-    this._background = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._background.init('main');
     this._logo = this._entityFactory.sprite(162, 150, 'preload', 'logo');
   }
 

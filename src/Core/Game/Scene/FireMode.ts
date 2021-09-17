@@ -5,21 +5,22 @@ import Button from "../GameItems/Button";
 
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
+import Background from "../GameItems/Background";
 
 
 class FireMode implements IScene {
   private _entityFactory: EntityFactory;
   private _sceneManager: ISceneManager;
   private _back: Button;
-  private _background: Sprite;
+  private _background: Background;
 
-  constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, button: Button, sprite: Sprite) {
+  constructor(entityFactory: EntityFactory, sceneManager: ISceneManager, button: Button, background: Background) {
     this._entityFactory = entityFactory;
     this._sceneManager = sceneManager;
 
     this._back = button;
 
-    this._background = sprite;
+    this._background = background;
   }
 
   public async preload(): Promise<void> {
@@ -41,7 +42,7 @@ class FireMode implements IScene {
   }
 
   private _initBackground() {
-    this._background = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._background.init('main');
   }
 
   private  _initButtons() {

@@ -5,16 +5,21 @@ import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
 
+import Background from "../GameItems/Background";
+
 
 class Loading implements IScene {
   private _gfxLoader: IGfxLoader;
   private _resource: Resource;
   private _entityFactory: EntityFactory;
   private _sceneManager: ISceneManager;
+  private _background: Background;
 
-  constructor(gfxLoader: IGfxLoader, resource: Resource, entityFactory: EntityFactory, sceneManager: ISceneManager) {
+  constructor(gfxLoader: IGfxLoader, resource: Resource, background: Background,
+  entityFactory: EntityFactory, sceneManager: ISceneManager) {
     this._gfxLoader = gfxLoader;
     this._resource = resource;
+    this._background = background;
     this._entityFactory = entityFactory;
     this._sceneManager = sceneManager;
   }
@@ -36,7 +41,7 @@ class Loading implements IScene {
   }
 
   public create() {
-    let bg = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._background.init('preload');
     let logo = this._entityFactory.sprite(162, 690-300, 'preload', 'logo');
     let loading = this._entityFactory.text(414, 965, "Loading", {"fontSize": 60, "fill": "white"});
 

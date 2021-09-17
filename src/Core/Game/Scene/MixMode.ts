@@ -7,18 +7,19 @@ import TextImage from "../GameItems/TextImage";
 
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
+import Background from "../GameItems/Background";
 
 
 class MixMode implements IScene {
   private _entityFactory: EntityFactory;
   private _sceneManager: ISceneManager;
   private _back: Button;
-  private _background: Sprite;
+  private _background: Background;
   private _textImage: TextImage;
   private _execTime: ExecTime;
 
-  constructor(entityFactory: EntityFactory, execTime: ExecTime, sceneManager: ISceneManager, button: Button, sprite: Sprite,
-  textImage: TextImage) {
+  constructor(entityFactory: EntityFactory, execTime: ExecTime, sceneManager: ISceneManager, button: Button, 
+  background: Background, textImage: TextImage) {
     this._entityFactory = entityFactory;
     this._execTime = execTime;
     this._sceneManager = sceneManager;
@@ -26,7 +27,7 @@ class MixMode implements IScene {
     this._back = button;
     this._textImage = textImage;
 
-    this._background = sprite;
+    this._background = background;
   }
 
   public async preload(): Promise<void> {
@@ -49,7 +50,7 @@ class MixMode implements IScene {
   }
 
   private _initBackground() {
-    this._background = this._entityFactory.sprite(0, 0, 'preload', 'bg');
+    this._background.init('main');
   }
 
   private  _initButtons() {
