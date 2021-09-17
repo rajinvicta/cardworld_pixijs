@@ -88,7 +88,7 @@ class Scale {
       let current = this._getCurrentXY();
       let diff = current.x - screen.x;
 
-      console.log("current(%s) screen(%s) + diff(%s) + halfDiff(%s)", current.x, screen.x, diff, (diff / 2));
+      //console.log("current(%s) screen(%s) + diff(%s) + halfDiff(%s)", current.x, screen.x, diff, (diff / 2));
 
       return (diff / 2);
     } else {
