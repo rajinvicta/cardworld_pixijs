@@ -22,16 +22,21 @@ class Background {
     this._sprite.position.fitInsideContainer(false);
     this._sprite.position.setScaleMode(Positions.center, Positions.center, 1);
 
-    if (window.innerWidth / window.innerHeight > 1) {
-      this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);  
-    } else if (window.innerWidth / window.innerHeight < 0.56) {
-      this._sprite.display.setScaleMode(Sizes.maintain_ratio, Sizes.fill, 1);
-    }
-    
+    this._calculateScale();
   }
 
   public createNew(): Background {
     return new Background(this._entityFactory, this._sprite.createNew());
+  }
+
+  private _calculateScale() {
+    if (window.innerWidth / window.innerHeight > 1) {
+      this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);  
+    } else if (window.innerWidth / window.innerHeight < 0.56) {
+      this._sprite.display.setScaleMode(Sizes.maintain_ratio, Sizes.fill, 1);
+    } else {
+      this._sprite.display.setScaleMode(Sizes.normal, Sizes.normal, 1);
+    }
   }
 }
 
