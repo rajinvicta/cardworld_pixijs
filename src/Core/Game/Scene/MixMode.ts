@@ -8,6 +8,7 @@ import TextImage from "../GameItems/TextImage";
 import IScene from "../../Kernel/GameObjects/IScene";
 import ISceneManager from "../../Plugin/ISceneManager";
 import Background from "../GameItems/Background";
+import {Positions} from "../../Kernel/Data/ScaleMode";
 
 
 class MixMode implements IScene {
@@ -54,9 +55,13 @@ class MixMode implements IScene {
   }
 
   private  _initButtons() {
-    this._back.init(25, 50, 'back_btn', () => {
+    this._back.init(-100, 150, 'back_btn', () => {
       this._sceneManager.startScene('Menu');
     });
+    this._back.sprite.position.anchorX = 1;
+    this._back.sprite.position.anchorY = 0.5;
+    this._back.sprite.position.fitInsideContainer(false);
+    this._back.sprite.position.setScaleMode(Positions.right, Positions.left, 1);
   }
 
   private _initTextImage() {
