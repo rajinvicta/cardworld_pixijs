@@ -37,7 +37,7 @@ class CardWorld {
   }
 
   public startGame() {
-    this._screen.startRenderer(this._config.width, this._config.height, true, false);
+    this._screen.startRenderer(window.innerWidth, window.innerHeight, true, false);
 
     this._startLoop();
     this._initScenes();

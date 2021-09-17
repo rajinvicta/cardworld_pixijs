@@ -1,5 +1,5 @@
-type PositionMode = {x: Positions, y: Positions, modifier: Positions};
-type SizeMode = {x: Sizes, y: Sizes, modifier: Sizes};
+export type PositionMode = {x: Positions, y: Positions, modifier: number};
+export type SizeMode = {x: Sizes, y: Sizes, modifier: number};
 
 class ScaleMode {
   private _positionMode: PositionMode;
@@ -45,13 +45,13 @@ export default ScaleMode;
 
 export enum Positions {
   left,
-  right,
-  center
+  center,
+  right
 }
 
 export enum ContainerMode {
-  global,
-  gameplay
+  gameplay,
+  global
 }
 
 export enum Sizes {
