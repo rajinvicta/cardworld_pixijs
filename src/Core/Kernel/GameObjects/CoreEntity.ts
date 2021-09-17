@@ -3,18 +3,22 @@ import IAbstractGameObject from "../../Plugin/IAbstractGameObject";
 import Position from './Component/Position';
 import Display from './Component/Display';
 import Input from './Component/Input';
+import ScaleManager from '../Control/ScaleManager';
 
 class CoreEntity {
   protected _position: Position;
   protected _display: Display;
   protected _input: Input;
   protected _foreignObject: IAbstractGameObject;
+  protected _scaleManager: ScaleManager;
 
-  constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject) {
+  constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject,
+  scaleManager: ScaleManager) {
     this._position = position;
     this._display = display;
     this._input = input;
     this._foreignObject = foreignObject;
+    this._scaleManager = scaleManager;
   }
 
   get position(): Position {

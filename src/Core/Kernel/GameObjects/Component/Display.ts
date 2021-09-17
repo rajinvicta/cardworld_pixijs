@@ -118,6 +118,10 @@ class Display {
     return new Display(this._abstractObject.createNew(), this._scale.createNew(), this._screen);
   }
 
+  public updateScale() {
+    this._updateScale();
+  }
+
   private _updateScale() {
     this._scale.mode.sizeMode = this._scaleMode;
     this._scale.mode.containerMode = this._containerMode;

@@ -4,20 +4,23 @@ import PixiLayer from "./Pixi/PixiLayer";
 import Loop from "../Kernel/Control/Loop";
 import IAbstractGameObject from "./IAbstractGameObject";
 import {Container} from "pixi.js";
+import ScaleManager from "../Kernel/Control/ScaleManager";
 
 class SceneManager {
   private _pixiLayer: PixiLayer;
   private _sceneData: SceneData;
   private _loop: Loop;
+  private _scaleManager: ScaleManager;
   private _currentScene: SceneData | null;
 
   private _canUpdate: boolean;
 
   private _sceneList:SceneData[];
 
-  constructor(pixiLayer: PixiLayer, sceneData: SceneData, loop: Loop) {
+  constructor(pixiLayer: PixiLayer, sceneData: SceneData, loop: Loop, scaleManager: ScaleManager) {
     this._pixiLayer = pixiLayer;
     this._sceneData = sceneData;
+    this._scaleManager = scaleManager;
     this._loop = loop;
 
     this._currentScene = null;
@@ -31,6 +34,9 @@ class SceneManager {
 
   public init() {
     this._loop.addFunction(this._update, this);
+
+    this._scaleManager.init(this._pixiLayer.renderer);
+    console.log("Scale manager started");
   }
 
   public addScene(name: string, scene: any) {
@@ -79,6 +85,7 @@ class SceneManager {
 
   private _handleSceneStart(scene: SceneData) {
     if (this._currentScene != null) {
+      this._scaleManager.clearEntities();
       this._currentScene.scene.shutdown();
     }
 

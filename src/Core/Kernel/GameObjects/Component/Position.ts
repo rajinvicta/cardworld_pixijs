@@ -96,6 +96,10 @@ class Position {
     return new Position(this._abstractObject.createNew(), this._scale.createNew());
   }
 
+  public updatePosition() {
+    this._updatePosition();
+  }
+
   private _updatePosition() {
     this._scale.mode.positionMode = this._scaleMode;
     this._scale.mode.containerMode = this._containerMode;

@@ -7,6 +7,7 @@ import IAbstractGameObject from '../../Plugin/IAbstractGameObject';
 import IScreen from "../../Plugin/IScreen";
 import ISceneManager from "../../Plugin/ISceneManager";
 import Input from './Component/Input';
+import ScaleManager from '../Control/ScaleManager';
 
 class Text extends CoreEntity {
   private _label: Label;
@@ -16,8 +17,8 @@ class Text extends CoreEntity {
   private _abstractObject: IAbstractGameObject;
 
   constructor(position: Position, display: Display, input: Input, label: Label, foreignObject: IAbstractGameObject,
-  screen: IScreen, sceneManager: ISceneManager) {
-    super(position, display, input, foreignObject);
+  screen: IScreen, sceneManager: ISceneManager, scaleManager: ScaleManager) {
+    super(position, display, input, foreignObject, scaleManager);
 
     this._label = label;
 
@@ -50,7 +51,7 @@ class Text extends CoreEntity {
     let lab = this._label.createNew();
     let fo = this._abstractObject.createNew();
 
-    return new Text(pos, dis, inp, lab, fo, this._screen, this._sceneManager);
+    return new Text(pos, dis, inp, lab, fo, this._screen, this._sceneManager, this._scaleManager);
   }
 }
 

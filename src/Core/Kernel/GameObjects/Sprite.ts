@@ -6,15 +6,16 @@ import IAbstractGameObject from '../../Plugin/IAbstractGameObject';
 import IScreen from "../../Plugin/IScreen";
 import ISceneManager from "../../Plugin/ISceneManager";
 import Input from './Component/Input';
+import ScaleManager from '../Control/ScaleManager';
 
 class Sprite extends CoreEntity {
   private _screen: IScreen;
   private _sceneManager: ISceneManager;
   private _abstractObject: IAbstractGameObject;
 
-  constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject,
+  constructor(position: Position, display: Display, input: Input, scaleManager: ScaleManager, foreignObject: IAbstractGameObject,
   screen: IScreen, sceneManager: ISceneManager) {
-    super(position, display, input, foreignObject);
+    super(position, display, input, foreignObject, scaleManager);
 
     this._abstractObject = foreignObject;
     this._screen = screen;
@@ -26,6 +27,8 @@ class Sprite extends CoreEntity {
 
     this._sceneManager.addObject(fo);
     this._activate(x, y, fo);
+
+    this._scaleManager.addEntity(this);
   }
 
   public createNew(): Sprite {
@@ -34,7 +37,7 @@ class Sprite extends CoreEntity {
     let inp = this._input.createNew();
     let fo = this._abstractObject.createNew();
 
-    return new Sprite(pos, dis, inp, fo, this._screen, this._sceneManager);
+    return new Sprite(pos, dis, inp, this._scaleManager, fo, this._screen, this._sceneManager);
   }
 }
 
