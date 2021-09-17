@@ -21,7 +21,13 @@ class Background {
     this._sprite.position.anchorY = 0.5;
     this._sprite.position.fitInsideContainer(false);
     this._sprite.position.setScaleMode(Positions.center, Positions.center, 1);
-    this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);
+
+    if (window.innerWidth / window.innerHeight > 1) {
+      this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);  
+    } else if (window.innerWidth / window.innerHeight < 0.56) {
+      this._sprite.display.setScaleMode(Sizes.maintain_ratio, Sizes.fill, 1);
+    }
+    
   }
 
   public createNew(): Background {
