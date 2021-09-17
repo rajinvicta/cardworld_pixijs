@@ -11,9 +11,7 @@ class TextImage {
   private _imageList: string[];
   private _textList: string[];
 
-  private _startX: number;
-  private _gapX: number;
-  private _startY: number;
+  private _positions: {x: number, y: number}[];
   private _maxEntities: number;
 
   constructor(entityFactory: EntityFactory) {
@@ -22,10 +20,13 @@ class TextImage {
     this._imageList = [];
     this._textList = [];
 
-    this._startX = 150;
-    this._gapX = 40;
-    this._startY = 960;
+    this._positions = [];
     this._maxEntities = 3;
+
+
+    for (let c = 0; c < this._maxEntities; c++) {
+      this._positions.push({x: 180 + (c * 360), y: 960});
+    }
 
     this._entityFactory = entityFactory;
   }
@@ -35,7 +36,7 @@ class TextImage {
 
     let width = 0;
 
-    for (let c = 0; c < 3; c++) {
+    for (let c = 0; c < this._maxEntities; c++) {
       width += <number>this._showEntity(c, this._rnd(1, 2), width);
     }
   }
@@ -93,9 +94,9 @@ class TextImage {
         this._imageEntities.push(entity);
 
         entity.display.updateTexture('main', sprName);
-        entity.position.x = this._startX + width + (position * this._gapX);
-        entity.position.y = this._startY;
-        entity.position.anchorX = 0;
+        entity.position.x = this._positions[position].x;
+        entity.position.y = this._positions[position].y;
+        entity.position.anchorX = 0.5;
         entity.position.anchorY = 0.5;
 
         return entity.display.width;
@@ -109,9 +110,9 @@ class TextImage {
       if (txtEntity) {
         this._textEntities.push(txtEntity);
 
-        txtEntity.position.x = this._startX + width + (position * this._gapX);
-        txtEntity.position.y = this._startY;
-        txtEntity.position.anchorX = 0;
+        txtEntity.position.x = this._positions[position].x;
+        txtEntity.position.y = this._positions[position].y;
+        txtEntity.position.anchorX = 0.5;
         txtEntity.position.anchorY = 0.5;
         txtEntity.label.text = txt;
         txtEntity.label.style = {fill: 'white', fontSize: fnSize};
