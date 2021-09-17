@@ -41,11 +41,11 @@ class Display {
   }
 
   get width(): number {
-    return this._foreignObject.width;
+    return this._scale.reverseScale(this._foreignObject.width);
   }
 
   get height(): number {
-    return this._foreignObject.height;
+    return this._scale.reverseScale(this._foreignObject.height);
   }
 
   get scaleX(): number {

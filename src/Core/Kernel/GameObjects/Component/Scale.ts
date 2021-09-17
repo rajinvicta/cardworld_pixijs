@@ -36,6 +36,10 @@ class Scale {
     this._y = val;
   }
 
+  public reverseScale(val: number): number {
+    return (val / this._getRatio());
+  }
+
   public resizeX(val: number): number {
     return (val * this._x) * this._getRatio();
   }
