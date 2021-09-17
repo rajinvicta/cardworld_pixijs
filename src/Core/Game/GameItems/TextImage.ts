@@ -42,8 +42,11 @@ class TextImage {
   }
 
   public init() {
-    this._clearOld();
     this._allocateEntities();
+  }
+
+  public shutdown() {
+    this._clearOld();
   }
 
   private _allocateEntities() {
