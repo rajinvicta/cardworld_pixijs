@@ -72,6 +72,11 @@ class AbstractGameObject implements IAbstractGameObject {
     return {x: 1, y: 1};
   }
 
+  get tint(): number {
+    this._denyAccess();
+    return 1;
+  }
+
 
   set x(val: number) {
     this._denyAccess();
@@ -122,6 +127,10 @@ class AbstractGameObject implements IAbstractGameObject {
   }
 
   set scale(val: any) {
+    this._denyAccess();
+  }
+
+  set tint(val: number) {
     this._denyAccess();
   }
 

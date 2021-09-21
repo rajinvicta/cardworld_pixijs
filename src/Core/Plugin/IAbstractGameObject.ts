@@ -9,6 +9,7 @@ interface IAbstractGameObject {
   text: string;
   style: any;
   data: any;
+  tint: number;
   interactive: boolean;
   scale: {x: number, y: number}
   on(eventName: string, foo: Function): void;

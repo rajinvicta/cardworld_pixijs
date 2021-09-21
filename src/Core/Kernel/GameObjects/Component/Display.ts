@@ -32,6 +32,10 @@ class Display {
     this._containerMode = ContainerMode.gameplay;
   }
 
+  get tint(): number {
+    return this._foreignObject.tint;
+  }
+
   get alpha(): number {
     return this._alpha;
   }
@@ -74,6 +78,10 @@ class Display {
   set scaleY(val: number) {
     this._scaleY = val;
     this._updateScale();
+  }
+
+  set tint(val: number) {
+    this._foreignObject.tint = val;
   }
 
   public setScaleMode(x: Sizes, y: Sizes, modifier: number) {
