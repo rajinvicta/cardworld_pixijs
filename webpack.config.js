@@ -46,7 +46,8 @@ module.exports = (env) => {
         ["PixiLayer", "Loop", "SceneManager", "ScaleManager"], []),
 
       new HtmlWebpackPlugin({
-        title: "Card World - PixiJS"
+        title: "Card World - PixiJS",
+        meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
       }),
 
       new HtmlWebpackTagsPlugin({ tags: ['main.css'], append: true }),

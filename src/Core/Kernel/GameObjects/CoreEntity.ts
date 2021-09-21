@@ -11,6 +11,7 @@ class CoreEntity {
   protected _input: Input;
   protected _foreignObject: IAbstractGameObject;
   protected _scaleManager: ScaleManager;
+  private _information: any;
 
   constructor(position: Position, display: Display, input: Input, foreignObject: IAbstractGameObject,
   scaleManager: ScaleManager) {
@@ -19,6 +20,11 @@ class CoreEntity {
     this._input = input;
     this._foreignObject = foreignObject;
     this._scaleManager = scaleManager;
+  }
+
+  //Attach extra information
+  get information(): any {
+    return this._information;
   }
 
   get position(): Position {
@@ -35,6 +41,10 @@ class CoreEntity {
 
   get foreignObject(): IAbstractGameObject {
     return this._foreignObject;
+  }
+
+  set information(val: any) {
+    this._information = val;
   }
 
   public enableInput() {
