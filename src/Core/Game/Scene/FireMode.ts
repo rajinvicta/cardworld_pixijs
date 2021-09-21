@@ -36,7 +36,9 @@ class FireMode implements IScene {
     console.log("FireMode Level");
     this._initBackground();
     this._initButtons();
+    
     this._addFire();
+    this._addCig();
   }
 
   public update(dt: number) {
@@ -49,10 +51,17 @@ class FireMode implements IScene {
 
   }
 
+  private _addCig() {
+    let cig = this._entityFactory.sprite(540, 960, 'main', 'cig');
+    cig.position.anchorX = 0.5;
+    cig.position.anchorY = 0.5;
+    cig.position.fitInsideContainer(true);
+  }
+
   private _addFire() {
     let config = {
       x: 540,
-      y: 1500,
+      y: 720,
       maxParticle: 10*6,
       sheet: 'main',
       frame: 'Fire',
