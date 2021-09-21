@@ -7,8 +7,14 @@ export type Vector = {
   y: number
 }
 
+export type RGB = {
+  r: number,
+  g: number,
+  b: number
+}
+
 export type Information = {birth: number, scale: {start: Vector, end: Vector}, velocity: Vector,
-alpha: {start: number, end: number}, tint: {start: number, end: number}, angle: {start: number, end: number}};
+alpha: {start: number, end: number}, tint: {start: RGB, end: RGB}, angle: {start: number, end: number}};
 
 export type ParticleConfig = {
   x: number,
@@ -17,7 +23,7 @@ export type ParticleConfig = {
   sheet: string,
   frame: string,
   scale: {start: Vector, end: Vector, varianceX: {min: number, max: number}, varianceY: {min: number, max: number}},
-  tint: {start: number, end: number},
+  tint: {start: RGB, end: RGB},
   angle: {start: number, end: number},
   alpha: {start: number, end: number},
   motion: {velocity: Vector, varianceX: {min: number, max: number}, varianceY: {min: number, max: number}},
@@ -53,7 +59,7 @@ class ParticleSystem {
       alpha: {start: 1, end: 0.15},
       angle: {start: 0, end: 25},
       scale: {start: {x: 0.25, y: 0.25}, end: {x: 1.25, y: 1.25}, varianceX: {min: -1.35, max: 1.35}, varianceY: {min: -1.35, max: 1.35}},
-      tint: {start: 0, end: 0},
+      tint: {start: {r: 0, g: 0, b: 0}, end: {r: 0, g: 0, b: 0}},
       motion: {velocity: {x: 2, y: 3}, varianceX: {min: -1.35, max: 1.35}, varianceY: {min: -1.35, max: 1.35}},
       life: 3000,
       emitTime: 1000,
@@ -103,6 +109,8 @@ class ParticleSystem {
         this._moveParticle(particle, age);
         this._scaleParticle(particle, age);
         this._scaleAlpha(particle, age);
+        this._scaleTint(particle, age);
+        this._scaleAngle(particle, age);
       } else {
         this._recycle(particle);
       }
@@ -114,35 +122,39 @@ class ParticleSystem {
     let tenthAge = age / 10; //to speed down a bit
 
     particle.position.x = this._config.x + (info.velocity.x * tenthAge);
-    particle.position.y = this._config.x + (info.velocity.y * tenthAge);
+    particle.position.y = this._config.y + (info.velocity.y * tenthAge);
   }
 
   private _scaleParticle(particle: Sprite, age: number) {
-    return;
     let info = <Information>particle.information;
 
     let startX = info.scale.start.x;
     let startY = info.scale.start.y;
     let endX = info.scale.end.x;
     let endY = info.scale.end.y;
-    let xDiff = endX - startX;
-    let yDiff = endY - startY;
-    let agePerc = age / this._config.life;
 
-    particle.display.scaleX = startX + (xDiff * agePerc);
-    particle.display.scaleY = startY + (yDiff * agePerc);
+
+    particle.display.scaleX = this._getCurrentValue(startX, endX, age, this._config.life);
+    particle.display.scaleX = this._getCurrentValue(startY, endY, age, this._config.life);
   }
 
   private _scaleAlpha(particle: Sprite, age: number) {
     let info = <Information>particle.information;
+    let debugMode = false;
+
+    if ((<any>particle).debug) debugMode = true;
 
     particle.display.alpha = this._getCurrentValue(info.alpha.start, info.alpha.end, age, this._config.life);
   }
 
   private _scaleTint(particle: Sprite, age: number) {
     let info = <Information>particle.information;
+    particle.display.tint = this._getCurrentValueRGB(info.tint.start, info.tint.end, age, this._config.life);
+  }
 
-    //Tint
+  private _scaleAngle(particle: Sprite, age: number) {
+    let info = <Information>particle.information;
+    particle.position.angle = this._getCurrentValue(info.angle.start, info.angle.end, age, this._config.life);
   }
 
   private _getCurrentValue(start: number, end: number, age: number, life: number) {
@@ -152,11 +164,41 @@ class ParticleSystem {
     return start + (diff * agePerc);
   }
 
+  private _getCurrentValueRGB(start: RGB, end: RGB, age: number, life: number): number {
+    let r = this._getCurrentValue(start.r, end.r, age, life);
+    let g = this._getCurrentValue(start.g, end.g, age, life);
+    let b = this._getCurrentValue(start.b, end.b, age, life);
+
+    let target = {r: r, g: g, b: b};
+
+    console.log("Hex Code: '%s', rgb: ", this._rgbToHex(target), target);
+
+    return Number(this._rgbToHex(target));
+  }
+
+  private _rgbToHex(color: RGB) {
+    let r = parseInt(<any>color.r).toString(16);
+    let g = parseInt(<any>color.g).toString(16);
+    let b = parseInt(<any>color.b).toString(16);
+  
+    if (r.length == 1)
+      r = "0" + r;
+    if (g.length == 1)
+      g = "0" + g;
+    if (b.length == 1)
+      b = "0" + b;
+  
+    return "0x" + r + g + b;
+  }
+
+
   private _allocate(sheet: string, frame: string, max: number) {
     for (let c = 0; c < max; c++) {
       let particle = this._entityFactory.sprite(0, 0,  sheet, frame);
       this._moveToDeath(particle);
       this._dead.push(particle)
+
+      if (c == 0) (<any>particle).debug = true;
     }
   }
 
@@ -219,7 +261,8 @@ class ParticleSystem {
           y: this._config.motion.velocity.y * this._randomize(this._config.motion.varianceY)
         },
         alpha: {start: this._config.alpha.start, end: this._config.alpha.end},
-        tint: {start: this._config.tint.start, end: this._config.tint.end}
+        tint: {start: this._config.tint.start, end: this._config.tint.end},
+        angle: {start: this._config.angle.start, end: this._config.angle.end}
       }
     }
 

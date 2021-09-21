@@ -52,16 +52,18 @@ class FireMode implements IScene {
   private _addFire() {
     let config = {
       x: 540,
-      y: 1200,
-      maxParticle: 10,
+      y: 1500,
+      maxParticle: 10*6,
       sheet: 'main',
-      frame: 'Pink',
-      scale: {start: {x: 0.65, y: 0.65}, end: {x: 1.25, y: 1.25}, varianceX: {min: -1.5, max: 1.5}, varianceY: {min: -1.5, max: 1.5}},
-      tint: {start: 0, end: 0},
-      motion: {velocity: {x: 2, y: -3}, varianceX: {min: -1.5, max: 1.5}, varianceY: {min: 1, max: 1.5}},
-      life: 3000,
-      emitTime: 1000,
-      emitBurst: 3,
+      frame: 'Fire',
+      scale: {start: {x: 0.3, y: 0.3}, end: {x: 1.8, y: 2.1}, varianceX: {min: 1, max: 1}, varianceY: {min: 1, max: 1}},
+      tint: {start: {r: 255, g: 241, b: 145}, end: {r: 255, g: 132, b: 36}},
+      alpha: {start: 1, end: 0.15},
+      angle: {start: 0, end: 65},
+      motion: {velocity: {x: 2/1.5, y: -14/1.5}, varianceX: {min: -1.5, max: 1.5}, varianceY: {min: 1, max: 2}},
+      life: 300,
+      emitTime: 50,
+      emitBurst: 10,
       varianceMultiple: {min: -1.25, max: 1.25}
     };
 
