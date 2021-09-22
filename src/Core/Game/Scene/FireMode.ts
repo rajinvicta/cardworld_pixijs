@@ -59,6 +59,8 @@ class FireMode implements IScene {
     cig.position.fitInsideContainer(true);
   }
 
+  //Fire works best with max 60 particles on screen.
+  //Can change maxParticle to 10, and emitBurst to 10/6 to get a smaller less attractive but still working flame
   private _addFire() {
     let config = {
       x: 540,
