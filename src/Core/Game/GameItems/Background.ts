@@ -5,10 +5,12 @@ import {Positions, Sizes} from "../../Kernel/Data/ScaleMode";
 class Background {
   private _entityFactory: EntityFactory;
   private _sprite: Sprite;
+  private _resizeListner: Function;
 
   constructor(entityFactory: EntityFactory, sprite: Sprite) {
     this._entityFactory = entityFactory;
     this._sprite = sprite;
+    this._resizeListner = () => {};
   }
 
   get sprite(): Sprite {
@@ -23,10 +25,23 @@ class Background {
     this._sprite.position.setScaleMode(Positions.center, Positions.center, 1);
 
     this._calculateScale();
+    this._addListners();
   }
 
   public createNew(): Background {
     return new Background(this._entityFactory, this._sprite.createNew());
+  }
+
+  public shutdown() {
+    window.removeEventListener("resize", <any>this._resizeListner);
+  }
+
+  private _addListners() {
+    this._resizeListner = () => {
+      this._calculateScale();
+    }
+
+    window.addEventListener("resize", <any>this._resizeListner);
   }
 
   private _calculateScale() {

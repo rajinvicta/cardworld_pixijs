@@ -48,7 +48,7 @@ class FireMode implements IScene {
   }
 
   public shutdown() {
-
+    this._background.shutdown();
   }
 
   private _addCig() {

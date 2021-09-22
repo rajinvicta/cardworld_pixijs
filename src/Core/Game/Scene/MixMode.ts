@@ -48,6 +48,7 @@ class MixMode implements IScene {
 
   public shutdown() {
     this._textImage.shutdown();
+    this._background.shutdown();
   }
 
   private _initBackground() {

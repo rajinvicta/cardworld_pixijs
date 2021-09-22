@@ -44,7 +44,7 @@ class Menu implements IScene {
   }
 
   public shutdown() {
-
+    this._background.shutdown();
   }
 
   private _initBackground() {

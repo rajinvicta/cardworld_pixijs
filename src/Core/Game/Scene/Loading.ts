@@ -55,7 +55,7 @@ class Loading implements IScene {
   }
 
   public shutdown() {
-    //console.log("Good bye world!");
+    this._background.shutdown();
   }
 
   private async _loadFiles(): Promise<void> {
