@@ -63,7 +63,7 @@ class FireMode implements IScene {
     let config = {
       x: 540,
       y: 720,
-      maxParticle: 10*6,
+      maxParticle: 60,
       sheet: 'main',
       frame: 'Fire',
       scale: {start: {x: 0.3, y: 0.3}, end: {x: 1.8, y: 2.1}, varianceX: {min: 1, max: 1}, varianceY: {min: 1, max: 1}},
@@ -73,7 +73,7 @@ class FireMode implements IScene {
       motion: {velocity: {x: 2/1.5, y: -14/1.5}, varianceX: {min: -1.5, max: 1.5}, varianceY: {min: 1, max: 2}},
       life: 300,
       emitTime: 50,
-      emitBurst: 10,
+      emitBurst: 60/6,
       varianceMultiple: {min: -1.25, max: 1.25}
     };
 
