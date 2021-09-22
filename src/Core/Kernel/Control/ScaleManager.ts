@@ -10,7 +10,7 @@ class ScaleManager {
 
   public init(renderer: any) {
     window.addEventListener("resize", () => {
-      renderer.resize(window.innerWidth, window.innerHeight);
+      renderer.resize(document.documentElement.clientWidth, document.documentElement.clientHeight);
 
       this._onUpdate();
     });

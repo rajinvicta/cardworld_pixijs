@@ -12,11 +12,11 @@ class Config {
   }
 
   get displayWidth(): number {
-    return window.innerWidth;
+    return document.documentElement.clientWidth;
   }
 
   get displayHeight(): number {
-    return window.innerHeight;
+    return document.documentElement.clientHeight;
   }
 }
 

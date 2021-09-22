@@ -30,9 +30,9 @@ class Background {
   }
 
   private _calculateScale() {
-    if (window.innerWidth / window.innerHeight > 1) {
+    if (document.documentElement.clientWidth / document.documentElement.clientHeight > 1) {
       this._sprite.display.setScaleMode(Sizes.fill, Sizes.maintain_ratio, 1);  
-    } else if (window.innerWidth / window.innerHeight < 0.56) {
+    } else if (document.documentElement.clientWidth / document.documentElement.clientHeight < 0.56) {
       this._sprite.display.setScaleMode(Sizes.maintain_ratio, Sizes.fill, 1);
     } else {
       this._sprite.display.setScaleMode(Sizes.normal, Sizes.normal, 1);

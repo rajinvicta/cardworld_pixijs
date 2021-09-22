@@ -34,6 +34,14 @@ class Scale {
     return this._scaleMode;
   }
 
+  get originalWidth(): number {
+    return this._foreignObject.width / this._foreignObject.scale.x;
+  }
+
+  get originalHeight(): number {
+    return this._foreignObject.height / this._foreignObject.scale.y;
+  }
+
   set x(val: number) {
     this._x = val;
   }
@@ -109,16 +117,16 @@ class Scale {
   }
 
   private _getFillXScale() {
-    let width = this._foreignObject.width;
+    let width = this.originalWidth;
     let gameWidth = this._config.displayWidth;
 
-    console.log("fill x: ", gameWidth / width, this._foreignObject.x);
+    //console.log("fill x: ", gameWidth / width, this._foreignObject.x);
 
     return gameWidth / width;
   }
 
   private _getFillYScale() {
-    let height = this._foreignObject.height;
+    let height = this.originalHeight;
     let gameHeight = this._config.displayHeight;
 
     return gameHeight / height;
@@ -130,8 +138,6 @@ class Scale {
       let screen = this._getScreen();
       let current = this._getCurrentXY();
       let diff = current.x - screen.x;
-
-      //console.log("current(%s) screen(%s) + diff(%s) + halfDiff(%s)", current.x, screen.x, diff, (diff / 2));
 
       return (diff / 2);
     } else {
@@ -188,29 +194,10 @@ class Scale {
   }
 
   private _getCurrentXY() {
-    return {x: window.innerWidth, y: window.innerHeight};
+    return {x: document.documentElement.clientWidth, y: document.documentElement.clientHeight};
   }
 
 
 }
 
 export default Scale;
-
-
-
-
-
-
-
-
-
-
-/*
-      1. Decide container size
-      2. Calculate Size Ratio
-      3. Calculate X and Y scale normal
-      4. Calculate position
-      5. Add scale pixi support
-      6. Add scale to display and position
-
-*/
