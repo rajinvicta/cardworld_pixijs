@@ -171,7 +171,7 @@ class ParticleSystem {
 
     let target = {r: r, g: g, b: b};
 
-    console.log("Hex Code: '%s', rgb: ", this._rgbToHex(target), target);
+    //console.log("Hex Code: '%s', rgb: ", this._rgbToHex(target), target);
 
     return Number(this._rgbToHex(target));
   }
@@ -266,7 +266,7 @@ class ParticleSystem {
       }
     }
 
-    //console.log("velocity y: ", particle.information.velocity.y, this._config.motion.varianceY);
+    ////console.log("velocity y: ", particle.information.velocity.y, this._config.motion.varianceY);
   }
 
   private _randomize(val: {min: number, max: number}) {

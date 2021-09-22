@@ -36,7 +36,7 @@ class MixMode implements IScene {
   }
 
   public create() {
-    console.log("MixMode Level");
+    //console.log("MixMode Level");
     this._initBackground();
     this._initButtons();
     this._initTextImage();

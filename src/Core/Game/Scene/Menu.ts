@@ -34,7 +34,7 @@ class Menu implements IScene {
   }
 
   public create() {
-    console.log("Menu Level");
+    //console.log("Menu Level");
     this._initBackground();
     this._initButtons();
   }

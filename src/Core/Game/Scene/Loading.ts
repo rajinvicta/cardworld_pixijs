@@ -55,7 +55,7 @@ class Loading implements IScene {
   }
 
   public shutdown() {
-    console.log("Good bye world!");
+    //console.log("Good bye world!");
   }
 
   private async _loadFiles(): Promise<void> {
@@ -66,7 +66,7 @@ class Loading implements IScene {
 
       this._gfxLoader.addResources(resourceList);
       this._gfxLoader.download(() => {}, () => {
-        console.log("Download Complete"); 
+        //console.log("Download Complete"); 
         resolve();
       });
     });

@@ -40,8 +40,8 @@ class Text extends CoreEntity {
 
     this._label.init(text, style, fo);
 
-    console.log(fo);
-    console.log(this._foreignObject);
+    //console.log(fo);
+    //console.log(this._foreignObject);
   }
 
   public createNew(): Text {

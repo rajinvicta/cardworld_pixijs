@@ -40,7 +40,7 @@ class CardMode implements IScene {
   }
 
   public create() {
-    console.log("CardMode Level");
+    //console.log("CardMode Level");
     this._initBackground();
     this._initButtons();
     this._initCards();

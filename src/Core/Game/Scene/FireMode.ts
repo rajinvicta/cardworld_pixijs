@@ -33,7 +33,7 @@ class FireMode implements IScene {
   }
 
   public create() {
-    console.log("FireMode Level");
+    //console.log("FireMode Level");
     this._initBackground();
     this._initButtons();
     

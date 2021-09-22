@@ -29,14 +29,14 @@ class SceneManager {
 
     this._sceneList = [];
 
-    console.log("SceneManager allocated!");
+    //console.log("SceneManager allocated!");
   }
 
   public init() {
     this._loop.addFunction(this._update, this);
 
     this._scaleManager.init(this._pixiLayer.renderer);
-    console.log("Scale manager started");
+    //console.log("Scale manager started");
   }
 
   public addScene(name: string, scene: any) {
@@ -51,7 +51,7 @@ class SceneManager {
     let scn = this._getScene(name);
 
     if (scn) {
-      console.log("Starting Scene", scn);
+      //console.log("Starting Scene", scn);
       this._handleSceneStart(scn);
     } else {
       console.error("No scene with the name '%s' found", name);

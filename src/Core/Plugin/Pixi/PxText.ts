@@ -131,11 +131,11 @@ class PxText {
     this._scale = this._pxPoint.createNew(1, 1, (xVal: number)=> {
       if (this._data != null) this._data.scale.x = xVal;
       //this._updateTexture();
-      console.log("updated X Val!");
+      //console.log("updated X Val!");
     }, (yVal: number) => {
       if (this._data != null) this._data.scale.y = yVal;
       //this._updateTexture();
-      console.log("updated Y Val!");
+      //console.log("updated Y Val!");
     });
 
     this._anchor = this._pxPoint.createNew(1, 1, (xVal: number)=> {
