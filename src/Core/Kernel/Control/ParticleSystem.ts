@@ -82,6 +82,10 @@ class ParticleSystem {
     this._animate();
   }
 
+  public shutdown() {
+    this._loadDefaults();
+  }
+
   private _tryEmit() {
     if (this._timeElapsed >= this._config.emitTime) {
       this._timeStart = Date.now();
@@ -267,6 +271,31 @@ class ParticleSystem {
     }
 
     ////console.log("velocity y: ", particle.information.velocity.y, this._config.motion.varianceY);
+  }
+
+
+  private _loadDefaults() {
+    this._timeElapsed = 0;
+    this._timeStart = 0;
+
+    this._dead = [];
+    this._active = [];
+
+    this._config = {
+      x: 0,
+      y: 0,
+      maxParticle: 10,
+      sheet: 'main',
+      frame: 'test',
+      alpha: {start: 1, end: 0.15},
+      angle: {start: 0, end: 25},
+      scale: {start: {x: 0.25, y: 0.25}, end: {x: 1.25, y: 1.25}, varianceX: {min: -1.35, max: 1.35}, varianceY: {min: -1.35, max: 1.35}},
+      tint: {start: {r: 0, g: 0, b: 0}, end: {r: 0, g: 0, b: 0}},
+      motion: {velocity: {x: 2, y: 3}, varianceX: {min: -1.35, max: 1.35}, varianceY: {min: -1.35, max: 1.35}},
+      life: 3000,
+      emitTime: 1000,
+      emitBurst: 3,
+    }
   }
 
   private _randomize(val: {min: number, max: number}) {

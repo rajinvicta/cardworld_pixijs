@@ -50,6 +50,7 @@ class FireMode implements IScene {
 
   public shutdown() {
     this._background.shutdown();
+    this._particleSystem.shutdown();
   }
 
   private _addCig() {
