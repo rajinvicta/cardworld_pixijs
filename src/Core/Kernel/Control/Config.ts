@@ -18,6 +18,10 @@ class Config {
   get displayHeight(): number {
     return document.documentElement.clientHeight;
   }
+
+  get showFPS(): boolean {
+    return true;
+  }
 }
 
 export default Config;

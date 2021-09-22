@@ -1,15 +1,21 @@
 import Sprite from "../../Kernel/GameObjects/Sprite";
 import EntityFactory from "../../Kernel/GameObjects/EntityFactory";
 import {Positions, Sizes} from "../../Kernel/Data/ScaleMode";
+import Config from "../../Kernel/Control/Config";
+import FPSCounter from "./FPSCounter";
 
 class Background {
   private _entityFactory: EntityFactory;
   private _sprite: Sprite;
   private _resizeListner: Function;
+  private _config: Config;
+  private _fpsCounter: FPSCounter;
 
-  constructor(entityFactory: EntityFactory, sprite: Sprite) {
+  constructor(entityFactory: EntityFactory, sprite: Sprite, fpsCounter: FPSCounter, config: Config) {
     this._entityFactory = entityFactory;
     this._sprite = sprite;
+    this._config = config;
+    this._fpsCounter = fpsCounter;
     this._resizeListner = () => {};
   }
 
@@ -26,14 +32,25 @@ class Background {
 
     this._calculateScale();
     this._addListners();
+    if (this._config.showFPS) {
+      this._showFPS();
+    }
   }
 
   public createNew(): Background {
-    return new Background(this._entityFactory, this._sprite.createNew());
+    return new Background(this._entityFactory, this._sprite.createNew(), this._fpsCounter.createNew(), this._config);
   }
 
   public shutdown() {
     window.removeEventListener("resize", <any>this._resizeListner);
+  }
+
+  public update() {
+    if (this._config.showFPS) this._fpsCounter.update();
+  }
+
+  private _showFPS() {
+    this._fpsCounter.init();
   }
 
   private _addListners() {

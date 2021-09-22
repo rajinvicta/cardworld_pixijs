@@ -9,6 +9,10 @@ class Screen implements IScreen {
     this._pixiLayer = pixiLayer;
   }
 
+  get fps(): number {
+    return this._pixiLayer.fps;
+  }
+
   public startRenderer(width: number, height: number, antialias: boolean, transparent: boolean) {
     this._pixiLayer.createApplication(width, height, antialias, transparent);
   }

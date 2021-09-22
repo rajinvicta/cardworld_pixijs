@@ -41,6 +41,7 @@ class Menu implements IScene {
 
   public update() {
     //console.log("updating Xd");
+    this._background.update();
   }
 
   public shutdown() {

@@ -44,6 +44,7 @@ class MixMode implements IScene {
 
   public update() {
     this._execTime.update();
+    this._background.update();
   }
 
   public shutdown() {

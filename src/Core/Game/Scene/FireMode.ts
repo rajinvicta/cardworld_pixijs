@@ -45,6 +45,7 @@ class FireMode implements IScene {
     //console.log("dt: ", dt);
 
     this._particleSystem.update(dt);
+    this._background.update();
   }
 
   public shutdown() {

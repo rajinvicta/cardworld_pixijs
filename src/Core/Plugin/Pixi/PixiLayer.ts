@@ -20,6 +20,10 @@ class PixiLayer {
     }
   }
 
+  get fps(): number {
+    return PIXI.Ticker.shared.FPS;
+  }
+
   get stage(): PIXI.Container | null {
     if (this._app) {
       return this._app.stage;

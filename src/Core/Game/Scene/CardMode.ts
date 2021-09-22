@@ -51,6 +51,7 @@ class CardMode implements IScene {
     this._execTime.update();
     this._deck1.update(dt);
     this._deck2.update(dt);
+    this._background.update();
   }
 
   public shutdown() {
