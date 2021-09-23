@@ -25,7 +25,7 @@ class FPSCounter {
   }
 
   public init() {
-    this._text = this._entityFactory.text(100, 150, "FPS: <Calculating>", {"fontSize": 60, "fill": "white"});
+    this._text = this._entityFactory.text(30, 50, "FPS: <Calculating>", {"fontSize": 60, "fill": "white"});
     this._text.position.anchorX = 0;
     this._text.position.anchorY = 0.5;
     this._text.position.fitInsideContainer(false);
